@@ -1,13 +1,13 @@
 package com.example.youbooking.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 import java.util.List;
 
 @Entity
 public class Proprietaire extends User{
-    @OneToMany
+    @OneToMany(mappedBy = "proprietaire")
     private List<Hotel> hotels;
 
     public Proprietaire(List<Hotel> hotels) {

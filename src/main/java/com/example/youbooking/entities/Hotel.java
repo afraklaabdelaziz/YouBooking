@@ -1,8 +1,7 @@
 package com.example.youbooking.entities;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
-import java.awt.*;
 import java.io.Serializable;
 import java.util.List;
 
