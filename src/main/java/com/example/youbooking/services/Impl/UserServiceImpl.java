@@ -2,6 +2,7 @@ package com.example.youbooking.services.Impl;
 
 import com.example.youbooking.entities.User;
 import com.example.youbooking.repositories.UserRepository;
+import com.example.youbooking.services.IAdresseService;
 import com.example.youbooking.services.IUserService;
 import com.example.youbooking.services.dto.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,9 @@ public class UserServiceImpl implements IUserService {
 
     @Autowired
     public UserRepository userRepository;
+
+    @Autowired
+    public IAdresseService adresseService;
 
     @Override
     public ResponseDTO addUser(User user) {
@@ -25,6 +29,8 @@ public class UserServiceImpl implements IUserService {
             return new ResponseDTO("bad request","user with this email is present");
 
         }else {
+            adresseService.addAdressse(user.getAdresse());
+            userRepository.save(user);
             return new ResponseDTO("success","user is added",user);
         }
 
@@ -40,6 +46,9 @@ public class UserServiceImpl implements IUserService {
             userFind.setNom(user.getNom());
             userFind.setPassword(user.getPassword());
             userFind.setTelephone(user.getTelephone());
+            userFind.setAdresse(user.getAdresse());
+            adresseService.updateAdresse(user.getAdresse());
+            userRepository.save(user);
             return new ResponseDTO("success","your profile is updated",userFind);
         }
     }

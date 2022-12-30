@@ -1,7 +1,9 @@
 package com.example.youbooking.controllers;
 
+import com.example.youbooking.dto.AdresseDto;
 import com.example.youbooking.dto.LoginDto;
 import com.example.youbooking.dto.UserDto;
+import com.example.youbooking.entities.Adresse;
 import com.example.youbooking.entities.User;
 import com.example.youbooking.services.IUserService;
 import com.example.youbooking.services.dto.ResponseDTO;
@@ -23,7 +25,6 @@ public class UserController {
     @PostMapping("/add")
     public ResponseDTO register(@Valid UserDto userDto){
         User user = DtoToEntity.userDtoToUser(userDto);
-        System.out.println(userDto);
         return userService.addUser(user);
     }
 

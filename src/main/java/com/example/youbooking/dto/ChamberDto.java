@@ -1,13 +1,22 @@
 package com.example.youbooking.dto;
 
+import com.sun.istack.NotNull;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 public class ChamberDto implements Serializable {
     private Long id;
+    @NotEmpty
+    @NotNull
     private Integer numero;
+    @NotEmpty @NotNull
     private Double prix;
+    @NotEmpty @NotNull
     private Integer nomberLits;
     private String status;
+    @Valid
     private HotelDto hotel;
 
     public ChamberDto(Long id, Integer numero, Double prix, Integer nomberLits, String status, HotelDto hotel) {
