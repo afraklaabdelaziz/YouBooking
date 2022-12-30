@@ -9,4 +9,8 @@ public interface IUserService {
     public ResponseDTO bannerUser(Long idUser);
     public ResponseDTO findUser(Long idUser);
     public ResponseDTO findAllUsers();
+
+    ResponseDTO findUserByTelephone(String telephone);
+
+    ResponseDTO findUserByEmail(String email);
 }
