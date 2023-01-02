@@ -3,6 +3,8 @@ package com.example.youbooking.controllers;
 import com.example.youbooking.dto.UserDto;
 import com.example.youbooking.entities.*;
 import com.example.youbooking.repositories.ClientRepository;
+import com.example.youbooking.services.IClientService;
+import com.example.youbooking.services.IProprietaireService;
 import com.example.youbooking.services.IUserService;
 import com.example.youbooking.services.dto.ResponseDTO;
 import com.example.youbooking.utiles.DtoToEntity;
@@ -20,7 +22,9 @@ public class UserController {
     @Autowired
     IUserService userService;
     @Autowired
-    ClientRepository clientRepository;
+   IClientService clientService;
+    @Autowired
+    IProprietaireService proprietaireService;
 
     @GetMapping
     public ResponseDTO allUsers(){
@@ -38,8 +42,11 @@ public class UserController {
         User user = DtoToEntity.userDtoToUser(userDto);
         if (user.getRole().getNom().equals("client")){
             Client client = DtoToEntity.clientDtoToUser(userDto);
-             clientRepository.save(client);
+             clientService.addClient(client);
              return new ResponseDTO("success","success",client);
+        }else if(user.getRole().getNom().equals("propritaire")){
+            Proprietaire proprietaire = DtoToEntity.propritaireDtoToUser(userDto);
+            return proprietaireService.addPropritaire(proprietaire);
         }
         return userService.addUser(user);
     }
