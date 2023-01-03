@@ -1,4 +1,4 @@
-<form method="post">
+<form method="post" #form="ngForm" (submit)="login(form)">
   <label>email</label>
   <input name="email" type="email">
   <label>password</label>

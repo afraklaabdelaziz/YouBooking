@@ -5,32 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58b8eb55-0954-4f51-ace4-40e03a696069" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/repositories/RoleRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front-end/src/app/model/login.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/config/JwtAuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/config/JwtAuthFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/controllers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/controllers/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/repositories/ProprietaireRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/repositories/ProprietaireRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/services/IHotelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/services/IHotelService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/services/IProprietaireService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/services/IProprietaireService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/services/Impl/AdminServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/services/Impl/AdminServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/services/Impl/HotelServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/services/Impl/HotelServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/services/Impl/ProprietaireServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/services/Impl/ProprietaireServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/example/youbooking/config/JwtAuthFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/target/classes/com/example/youbooking/config/JwtAuthFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/example/youbooking/config/SecurityConfig$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/target/classes/com/example/youbooking/config/SecurityConfig$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/example/youbooking/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/target/classes/com/example/youbooking/config/SecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/example/youbooking/controllers/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/target/classes/com/example/youbooking/controllers/AdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/example/youbooking/controllers/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/target/classes/com/example/youbooking/controllers/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/example/youbooking/repositories/ProprietaireRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/target/classes/com/example/youbooking/repositories/ProprietaireRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/example/youbooking/services/IHotelService.class" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/target/classes/com/example/youbooking/services/IHotelService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/example/youbooking/services/IProprietaireService.class" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/target/classes/com/example/youbooking/services/IProprietaireService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/example/youbooking/services/Impl/AdminServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/target/classes/com/example/youbooking/services/Impl/AdminServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/example/youbooking/services/Impl/HotelServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/target/classes/com/example/youbooking/services/Impl/HotelServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/example/youbooking/services/Impl/ProprietaireServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/target/classes/com/example/youbooking/services/Impl/ProprietaireServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/component/register/register.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/component/register/register.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/component/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/component/login/login.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/component/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/component/login/login.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/app/component/register/register.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/component/register/register.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/app/model/adresse.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/model/adresse.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/app/model/role.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/model/role.ts" afterDir="false" />
@@ -125,7 +104,7 @@
       <updated>1672648325233</updated>
       <workItem from="1672648329636" duration="292000" />
       <workItem from="1672648665428" duration="121000" />
-      <workItem from="1672648800341" duration="31336000" />
+      <workItem from="1672648800341" duration="34486000" />
     </task>
     <servers />
   </component>
