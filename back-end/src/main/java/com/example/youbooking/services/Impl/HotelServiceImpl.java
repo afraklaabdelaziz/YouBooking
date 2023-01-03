@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class HotelServiceImpl implements IHotelService {
@@ -41,6 +42,18 @@ public class HotelServiceImpl implements IHotelService {
     }
 
     @Override
+    public ResponseDTO updateStatusHotel(Long idHotel) {
+        Optional<Hotel> hotel = hotelRepository.findById(idHotel);
+        if (!hotel.isPresent()){
+            return new ResponseDTO("bad request","this hotel dont present");
+        }else {
+            hotel.get().setStatus(Status.Active);
+            hotelRepository.save(hotel.get());
+            return new ResponseDTO("success","hotel actived");
+        }
+    }
+
+    @Override
     public ResponseDTO findOneHotel(Long idHotel) {
         Hotel hotel = hotelRepository.findById(idHotel).get();
         if(hotel == null){
@@ -64,6 +77,8 @@ public class HotelServiceImpl implements IHotelService {
             return new ResponseDTO("success","hotel is delete",hotel);
         }
     }
+
+
 
     @Override
     public List<Hotel> findHotelsByStatus(Status status) {

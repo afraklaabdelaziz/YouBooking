@@ -8,7 +8,9 @@ import { User } from '../model/user';
 export class UserService {
 
   constructor(private http: HttpClient) { }
+
   register(user:User):Observable<User>{
-    return this.http.post<User>("http://localhost:8080/user/add",user)
+    return this.http.post<User>(`http://localhost:8080/user/add`,user)
   }
+  
 }

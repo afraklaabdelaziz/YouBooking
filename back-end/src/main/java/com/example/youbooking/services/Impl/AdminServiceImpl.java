@@ -21,6 +21,7 @@ public class AdminServiceImpl implements IAdminService {
             return new ResponseDTO("bad request","this Onner dont present");
         }else {
             proprietaire.get().setStatus(Status.Active);
+            proprietaireRepository.save(proprietaire.get());
             return new ResponseDTO("success","Onner accepted");
         }
     }

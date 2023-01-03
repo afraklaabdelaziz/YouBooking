@@ -39,4 +39,9 @@ public class ProprietaireServiceImpl implements IProprietaireService {
                 return new ResponseDTO("success","user is added");
             }
         }
+
+    @Override
+    public ResponseDTO findPropritaireByStatusDesactive(Status status) {
+        return new ResponseDTO("success","Onners",proprietaireRepository.findByStatus(status));
+    }
 }

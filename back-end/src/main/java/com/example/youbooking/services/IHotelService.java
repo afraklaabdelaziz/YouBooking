@@ -9,6 +9,7 @@ import java.util.List;
 public interface IHotelService {
     public ResponseDTO addHotel(Hotel hotel);
     public ResponseDTO updateHotel(Hotel hotel);
+    public ResponseDTO updateStatusHotel(Long idHotel);
     public ResponseDTO findOneHotel(Long idHotel);
     public List<Hotel> findAllHotels();
     public ResponseDTO deleteHotel(Long idHotel);

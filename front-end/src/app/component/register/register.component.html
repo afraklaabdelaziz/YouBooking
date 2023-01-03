@@ -1,12 +1,17 @@
-<form method="post">
+<form method="post" #form="ngForm" (submit)="register(form)">
   <label>email</label>
-  <input [(ngModel)]="email" name="email" type="email">
-  <label>email</label>
-  <input [(ngModel)]="email" name="nom" type="text">
-  <label>email</label>
-  <input [(ngModel)]="email" name="password" type="text">
-  <label>email</label>
-  <input [(ngModel)]="email" name="email" type="text">
+  <input [(ngModel)]="user.email" name="email" type="email">
+  <label>nom</label>
+  <input ngModel [(ngModel)]="user.nom" name="nom" type="text">
+  <label>password</label>
+  <input [(ngModel)]="user.password" name="password" type="text">
+  <label>telephone</label>
+  <input [(ngModel)]="user.telephone" name="telephone" type="text">
+  <label>Role</label>
+  <select [(ngModel)]="user.role.id" name="role">
+    <option value="2">client</option>
+    <option value="3">propritaire</option>
+  </select>
   <input type="submit" value="save">
 </form>
 
