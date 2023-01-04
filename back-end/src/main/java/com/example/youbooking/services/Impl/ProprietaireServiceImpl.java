@@ -35,7 +35,6 @@ public class ProprietaireServiceImpl implements IProprietaireService {
 
             }else {
                 adresseService.addAdressse(proprietaire.getAdresse());
-                proprietaire.setStatus(Status.Desactive);
                 proprietaire.setPassword(new BCryptPasswordEncoder().encode(proprietaire.getPassword()));
                 proprietaireRepository.save(proprietaire);
                 return new ResponseDTO("success","user is added");

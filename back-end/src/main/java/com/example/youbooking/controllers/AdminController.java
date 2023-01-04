@@ -21,10 +21,7 @@ public class AdminController {
     @Autowired
     IHotelService hotelService;
 
-    @GetMapping("/hotelSeasctive")
-    public List<Hotel> findAllHotelDesactive(){
-        return hotelService.findHotelsByStatus(Status.Desactive);
-    }
+
     @PutMapping("/hotelSeasctive/{id}")
     public ResponseDTO updateStausHotel(@PathVariable Long id){
         return hotelService.updateStatusHotel(id);

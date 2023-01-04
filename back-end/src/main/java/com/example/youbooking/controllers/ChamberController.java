@@ -49,7 +49,7 @@ public class ChamberController {
         return chamberService.deleteChamber(id);
     }
 
-    @PostMapping("reserver")
+    @PostMapping("/reserver")
     public ResponseDTO resrever(@RequestBody Reservation reservation){
         return reservationService.addReservation(reservation);
     }

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Login } from 'src/app/model/login';
 import { UserService } from 'src/app/service/user.service';
 
@@ -11,15 +12,15 @@ import { UserService } from 'src/app/service/user.service';
 export class LoginComponent {
 
  public login: Login;
-
-  constructor(private userService:UserService) {
+ 
+  constructor(private userService:UserService,public router:Router) {
    this.login = new Login();
   }
 
   authenticate(){
     this.userService.login(this.login).subscribe((res:any)=>{
-      console.log(res.data);
+      localStorage.setItem("token",res.data)
+      this.router.navigate(["/home"])
     })
   }
-
 }

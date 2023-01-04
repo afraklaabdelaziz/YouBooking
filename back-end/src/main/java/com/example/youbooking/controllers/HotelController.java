@@ -29,6 +29,11 @@ public class HotelController {
         return hotelService.findHotelsByStatus(Status.Desactive);
     }
 
+    @GetMapping("/all")
+    public List<Hotel> findAllHotels(){
+        return hotelService.findAllHotels();
+    }
+
     @GetMapping("/one/{id}")
     public ResponseDTO findOne(@PathVariable Long id){
         return hotelService.findOneHotel(id);

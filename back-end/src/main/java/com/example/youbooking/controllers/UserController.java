@@ -63,6 +63,7 @@ public class UserController {
 
         }else if(role.get().getNom().equals("propritaire")){
             Proprietaire proprietaire = DtoToEntity.propritaireDtoToUser(userDto);
+            proprietaire.setStatus(Status.Desactive);
             return proprietaireService.addPropritaire(proprietaire);
         }
 
@@ -78,7 +79,7 @@ public class UserController {
             System.out.println("token" + jwtUtils.generateToken(user));
             return ResponseEntity.ok(new ResponseDTO("success","token",jwtUtils.generateToken(user)));
         }
-        return ResponseEntity.status(400).body(new ResponseDTO("bad request","not found"));
+        return ResponseEntity.status(400).body(new ResponseDTO("bad request","user not found"));
     }
 
 }
