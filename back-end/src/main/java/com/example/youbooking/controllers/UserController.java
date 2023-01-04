@@ -1,5 +1,7 @@
 package com.example.youbooking.controllers;
 
+import com.example.youbooking.config.JwtUtils;
+import com.example.youbooking.dto.LoginDto;
 import com.example.youbooking.dto.UserDto;
 import com.example.youbooking.entities.*;
 import com.example.youbooking.repositories.RoleRepository;
@@ -9,6 +11,10 @@ import com.example.youbooking.services.IUserService;
 import com.example.youbooking.services.dto.ResponseDTO;
 import com.example.youbooking.utiles.DtoToEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -28,6 +34,10 @@ public class UserController {
    IClientService clientService;
     @Autowired
     IProprietaireService proprietaireService;
+    @Autowired
+    AuthenticationManager authenticationManager;
+    @Autowired
+    JwtUtils jwtUtils;
 
     @GetMapping
     public ResponseDTO allUsers(){
@@ -57,6 +67,18 @@ public class UserController {
         }
 
         return userService.addUser(user);
+    }
+
+    @PostMapping("/login")
+    @ResponseBody
+    public ResponseEntity<ResponseDTO> auth(@RequestBody LoginDto login){
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login.getEmail(),login.getPassword()));
+        UserDetails user = userService.findUserByEmail(login.getEmail());
+        if (user != null){
+            System.out.println("token" + jwtUtils.generateToken(user));
+            return ResponseEntity.ok(new ResponseDTO("success","token",jwtUtils.generateToken(user)));
+        }
+        return ResponseEntity.status(400).body(new ResponseDTO("bad request","not found"));
     }
 
 }

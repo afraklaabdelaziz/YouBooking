@@ -10,15 +10,16 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class LoginComponent {
 
-  login! : Login;
-  constructor(private userService:UserService) {
+ public login: Login;
 
+  constructor(private userService:UserService) {
+   this.login = new Login();
   }
 
-  authenticate(form:NgForm){
-    this.userService.login(this.login).subscribe(
-
-    );
+  authenticate(){
+    this.userService.login(this.login).subscribe((res:any)=>{
+      console.log(res.data);
+    })
   }
 
 }

@@ -14,8 +14,8 @@ export class UserService {
     return this.http.post<any>(`http://localhost:8080/user/add`,user)
   }
 
-  login(login:Login):Observable<Login> {
-  return this.http.post<any>(`http://localhost:8080/user/login`,login)
+  login(login:any):Observable<any> {
+    return this.http.post<any>(`http://localhost:8080/user/login`,login)
   }
   }
-  
+

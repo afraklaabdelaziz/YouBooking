@@ -7,8 +7,11 @@ import com.example.youbooking.services.IAdresseService;
 import com.example.youbooking.services.IUserService;
 import com.example.youbooking.services.dto.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,11 +32,12 @@ public class UserServiceImpl implements IUserService {
         }else if (this.findUserByTelephone(user.getTelephone()).getData() != null ){
             return new ResponseDTO("bad request","this user with this phone is present");
 
-        }else if(this.findUserByEmail(user.getEmail()).getData() != null){
+        }else if(this.findUserByEmail(user.getEmail()) != null){
             return new ResponseDTO("bad request","user with this email is present");
 
         }else {
             adresseService.addAdressse(user.getAdresse());
+            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
             userRepository.save(user);
             return new ResponseDTO("success","user is added",user);
         }
@@ -101,13 +105,14 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public ResponseDTO findUserByEmail(String email){
+    public UserDetails findUserByEmail(String email){
         User user = userRepository.findUserByEmail(email);
         if(user == null){
-            return new ResponseDTO("bad request","this user dont present");
+           return null;
 
         }else {
-            return new ResponseDTO("success","user",user);
+
+           return new org.springframework.security.core.userdetails.User(user.getEmail(),user.getPassword(),Collections.singleton(new SimpleGrantedAuthority(user.getRole().getNom())));
         }
-    }
+        }
 }

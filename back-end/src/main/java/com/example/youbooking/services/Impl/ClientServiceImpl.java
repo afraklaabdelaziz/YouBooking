@@ -27,7 +27,7 @@ public class ClientServiceImpl implements IClientService {
         }else if (userService.findUserByTelephone(client.getTelephone()).getData() != null ){
             return new ResponseDTO("bad request","this user with this phone is present");
 
-        }else if(userService.findUserByEmail(client.getEmail()).getData() != null){
+        }else if(userService.findUserByEmail(client.getEmail()) != null){
             return new ResponseDTO("bad request","user with this email is present");
 
         }else {

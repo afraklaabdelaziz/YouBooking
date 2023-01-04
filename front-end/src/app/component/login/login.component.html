@@ -1,7 +1,7 @@
-<form method="post" #form="ngForm" (submit)="login(form)">
+<form method="post" #form="ngForm" (submit)="authenticate()">
   <label>email</label>
-  <input name="email" type="email">
+  <input name="email" [(ngModel)]="login.email" type="email">
   <label>password</label>
-  <input name="password" type="password">
+  <input name="password" [(ngModel)]="login.password" type="password">
   <input type="submit" value="login">
 </form>

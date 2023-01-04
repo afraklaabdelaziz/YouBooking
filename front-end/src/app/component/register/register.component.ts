@@ -11,12 +11,14 @@ import { UserService } from 'src/app/service/user.service';
 export class RegisterComponent implements OnInit{
   ngOnInit(): void {
   }
-  public user!:User;
+  public user:User;
   constructor(private userService: UserService) {
+    this.user =  new User();
   }
 
   register(form:NgForm){
     this.userService.register(this.user).subscribe()
+   
   }
 
 

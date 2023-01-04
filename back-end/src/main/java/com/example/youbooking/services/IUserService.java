@@ -3,6 +3,7 @@ package com.example.youbooking.services;
 import com.example.youbooking.entities.Status;
 import com.example.youbooking.entities.User;
 import com.example.youbooking.services.dto.ResponseDTO;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface IUserService {
 
     ResponseDTO findUserByTelephone(String telephone);
 
-    ResponseDTO findUserByEmail(String email);
+    UserDetails findUserByEmail(String email);
 }

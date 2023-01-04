@@ -11,6 +11,7 @@ import com.example.youbooking.services.IProprietaireService;
 import com.example.youbooking.services.IUserService;
 import com.example.youbooking.services.dto.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -29,12 +30,13 @@ public class ProprietaireServiceImpl implements IProprietaireService {
             }else if (userService.findUserByTelephone(proprietaire.getTelephone()).getData() != null ){
                 return new ResponseDTO("bad request","this user with this phone is present");
 
-            }else if(userService.findUserByEmail(proprietaire.getEmail()).getData() != null){
+            }else if(userService.findUserByEmail(proprietaire.getEmail()) != null){
                 return new ResponseDTO("bad request","user with this email is present");
 
             }else {
                 adresseService.addAdressse(proprietaire.getAdresse());
                 proprietaire.setStatus(Status.Desactive);
+                proprietaire.setPassword(new BCryptPasswordEncoder().encode(proprietaire.getPassword()));
                 proprietaireRepository.save(proprietaire);
                 return new ResponseDTO("success","user is added");
             }
