@@ -9,8 +9,6 @@ import com.example.youbooking.services.dto.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/v1/admin")
 public class AdminController {
@@ -22,7 +20,7 @@ public class AdminController {
     IHotelService hotelService;
 
 
-    @PutMapping("/hotelSeasctive/{id}")
+    @PutMapping("/updateStatusHotel/{id}")
     public ResponseDTO updateStausHotel(@PathVariable Long id){
         return hotelService.updateStatusHotel(id);
     }
@@ -31,7 +29,7 @@ public class AdminController {
     public ResponseDTO findPropritaireDesactive(){
     return  proprietaireService.findPropritaireByStatusDesactive(Status.Desactive);
     }
-    @PutMapping("/propritaireDesactiver/{id}")
+    @PutMapping("/updateStatuspropritaire/{id}")
     public ResponseDTO acceptePropritaire(@PathVariable Long id){
         return adminService.acceptePropritaire(id);
     }
