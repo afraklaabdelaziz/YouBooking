@@ -3,7 +3,9 @@ package com.example.youbooking.services.Impl;
 import com.example.youbooking.entities.Hotel;
 import com.example.youbooking.entities.Status;
 import com.example.youbooking.repositories.HotelRepository;
+import com.example.youbooking.services.IAdresseService;
 import com.example.youbooking.services.IHotelService;
+import com.example.youbooking.services.IUserService;
 import com.example.youbooking.services.dto.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,10 @@ public class HotelServiceImpl implements IHotelService {
 
     @Autowired
     public HotelRepository hotelRepository;
+    @Autowired
+    IAdresseService adresseService;
+    @Autowired
+    IUserService userService;
 
     @Override
     public ResponseDTO addHotel(Hotel hotel) {
@@ -23,6 +29,7 @@ public class HotelServiceImpl implements IHotelService {
             return new ResponseDTO("bad request","hotel is requred");
         }else {
             hotel.setStatus(Status.Desactive);
+            adresseService.addAdressse(hotel.getAdresse());
             hotelRepository.save(hotel);
             return new ResponseDTO("success","your hotel is added",hotel);
         }
@@ -84,4 +91,10 @@ public class HotelServiceImpl implements IHotelService {
     public List<Hotel> findHotelsByStatus(Status status) {
         return hotelRepository.findHotelByStatus(status);
     }
+
+    @Override
+    public ResponseDTO findHotelByProprietaire(Long idProprietaire, Status status) {
+     return new ResponseDTO("success","hotels ",hotelRepository.findHotelByProprietaireAndStatus(idProprietaire,status));
+    }
+
 }

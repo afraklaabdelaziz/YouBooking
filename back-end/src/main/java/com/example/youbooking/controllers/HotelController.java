@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/hotel")
+@CrossOrigin("http://localhost:62250")
 public class HotelController {
 
     @Autowired
@@ -29,6 +30,11 @@ public class HotelController {
         return hotelService.findHotelsByStatus(Status.Desactive);
     }
 
+    @GetMapping("/propritair")
+    public ResponseDTO findHotelByPropritaire(){
+        return hotelService.findHotelByProprietaire(1L,Status.Active);
+    }
+
     @GetMapping("/all")
     public List<Hotel> findAllHotels(){
         return hotelService.findAllHotels();
@@ -40,7 +46,7 @@ public class HotelController {
     }
 
     @PostMapping("/add")
-    public ResponseDTO addChamber(@Valid HotelDto hotelDto){
+    public ResponseDTO addChamber(@Valid @RequestBody HotelDto hotelDto){
         Hotel hotel = DtoToEntity.hoteDtoToHotel(hotelDto);
         return hotelService.addHotel(hotel);
     }

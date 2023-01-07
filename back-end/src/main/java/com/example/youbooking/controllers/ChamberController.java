@@ -14,6 +14,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/chamber")
+@CrossOrigin("http://localhost:62250")
 public class ChamberController {
 
     @Autowired

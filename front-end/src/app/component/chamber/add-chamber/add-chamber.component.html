@@ -1,0 +1,14 @@
+
+<form method="post" #form="ngForm" (submit)="addChamber(form)">
+  <label>prix</label>
+  <input [(ngModel)]="chamber.prix" name="prix" type="text">
+  <label>photo</label>
+  <input [(ngModel)]="chamber.photo" name="photo" type="text">
+  <label>nomberLits</label>
+  <input [(ngModel)]="chamber.nomberLits" name="nomberLits" type="number">
+  <input type="submit" value="save">
+
+</form>
+
+
+

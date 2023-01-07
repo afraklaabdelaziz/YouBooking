@@ -14,4 +14,6 @@ public interface IHotelService {
     public List<Hotel> findAllHotels();
     public ResponseDTO deleteHotel(Long idHotel);
     public List<Hotel> findHotelsByStatus(Status status);
+
+    ResponseDTO findHotelByProprietaire(Long idProprietaire, Status status);
 }

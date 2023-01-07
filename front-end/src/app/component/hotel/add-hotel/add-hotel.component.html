@@ -1,0 +1,23 @@
+<form method="post" #form="ngForm" (submit)="addHotel(form)">
+  <label>nom</label>
+  <input [(ngModel)]="hotel.nom" name="nom" type="text">
+  <label>photo</label>
+  <input [(ngModel)]="hotel.photo" name="photo" type="text">
+  <label>telephone</label>
+  <input [(ngModel)]="hotel.telephone" name="telephone" type="text">
+
+  <label>pays</label>
+  <input [(ngModel)]="hotel.adresse.pays" name="pays" type="text">
+  <label>ville</label>
+  <input [(ngModel)]="hotel.adresse.ville" name="ville" type="text">
+  <label>adresse</label>
+  <input [(ngModel)]="hotel.adresse.adresse" name="adresse" type="text">
+  <label>codePostal</label>
+  <input [(ngModel)]="hotel.adresse.codePostal" name="codePostal" type="text">
+
+  <input type="submit" value="save">
+
+</form>
+
+
+

@@ -17,8 +17,8 @@ export class RegisterComponent implements OnInit{
   }
 
   register(form:NgForm){
-    this.userService.register(this.user).subscribe()
-   
+    this.userService.register(this.user).subscribe((res:any)=>{
+    })
   }
 
 

@@ -1,5 +1,9 @@
 package com.example.youbooking.entities;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 import javax.persistence.*;
 
 import java.io.Serializable;
@@ -18,7 +22,7 @@ public class Chamber implements Serializable {
     @ManyToOne
     private Hotel hotel;
 
-    @OneToMany(mappedBy = "chamber")
+    @OneToMany(mappedBy = "chamber" ,fetch = FetchType.LAZY)
     private List<Reservation> reservationList;
 
 
@@ -73,10 +77,11 @@ public class Chamber implements Serializable {
         this.statusChamber = statusChamber;
     }
 
+    @JsonIgnore
     public Hotel getHotel() {
         return hotel;
     }
-
+    @JsonSetter
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;
     }

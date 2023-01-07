@@ -16,11 +16,11 @@ export class ChamberService {
   }
 
   addRoom(chamber:Chamber):Observable<any>{
-    return this.http.post("chamber/add",chamber);
+    return this.http.post("http://localhost:8080/chamber/add",chamber);
   }
 
   getOneRoom(id:number):Observable<any>{
-    return this.http.get("chamber/one/"+id)
+    return this.http.get("http//:localhost8080/chamber/one/"+id)
   }
 
   updateRoom(id:number,chamber:Chamber):Observable<any>{

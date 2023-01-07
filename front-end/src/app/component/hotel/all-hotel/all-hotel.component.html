@@ -1,0 +1,7 @@
+
+<a routerLink="/add_hotel" >add Hotel</a>
+    <a *ngFor="let hotel of hotels" routerLink="/one_hotel/{{hotel.id}}">
+    <li>
+      {{hotel.nom}}
+    </li>
+    </a>
