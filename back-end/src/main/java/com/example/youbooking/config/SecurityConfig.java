@@ -33,11 +33,11 @@ public class SecurityConfig {
     @Bean
    public SecurityFilterChain SecurityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf().disable().cors().disable()
+                .cors().and()
+                .csrf().disable()
                 .authorizeRequests()
-                .anyRequest().permitAll()
-                //.antMatchers("/**/user/**").permitAll()
-//                .antMatchers("/api/commande/**").hasAuthority("client")
+                .antMatchers("/**/user/**").permitAll()
+                 .antMatchers("/hotel/**").hasAuthority("client")
 //                .antMatchers("/api/produits").hasAnyAuthority("client","stock")
 //                .antMatchers("/api/produits/**").hasAuthority("stock")
 //                .antMatchers("/api/appelOffre/add").hasAuthority("stock")

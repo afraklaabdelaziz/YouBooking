@@ -1,0 +1,141 @@
+
+<app-header></app-header>
+<main>
+  <div
+    class="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75"
+  >
+
+      <span
+        id="blackOverlay"
+        class="w-full h-full absolute opacity-75 bg-black"
+      ></span>
+
+    <div class="relative">
+
+      <form action="" class="flex flex-col md:flex-row gap-8" method="POST">
+        <div class="flex flex-col">
+          <label class="text-white">
+            How many guest are you bringing?
+          </label>
+          <input
+            type="number"
+            placeholder="5"
+            min="0"
+            class="rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+
+        <div class="flex flex-col">
+          <label class="text-white">
+            How many guest are you bringing?
+          </label>
+          <input
+            type="number"
+            placeholder="5"
+            min="0"
+            class="rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+
+        <div class="flex flex-col">
+          <label
+            class="text-base font-medium text-white"
+          >
+            How many guest are you bringing?
+          </label>
+          <input
+            type="number"
+            placeholder="5"
+            min="0"
+            class=" appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+  <section class="bg-blueGray-200">
+    <div class=" mx-auto px-4">
+      <div class="flex flex-wrap">
+        <ul>
+          <li *ngFor="let hotel of hotels">
+            {{hotel.nom}}
+          </li>
+        </ul>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="py-24 lg:pt-0  mt-5">
+    <div class="flex flex-wrap justify-center mx-auto px-4">
+      <div class="w-full lg:w-6/12 px-4">
+        <div
+          class=" flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200"
+        >
+          <div class="flex-auto p-5 lg:p-10">
+            <h4 class="text-2xl font-semibold">Want to work with us?</h4>
+            <p class="leading-relaxed mt-1 mb-4 text-blueGray-500">
+              Complete this form and we will get back to you in 24 hours.
+            </p>
+            <div class="w-full mb-3 mt-8">
+              <label
+                class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                htmlFor="full-name"
+              >
+                Full Name
+              </label>
+              <input
+                type="text"
+                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                placeholder="Full Name"
+              />
+            </div>
+
+            <div class=" w-full mb-3">
+              <label
+                class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                htmlFor="email"
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                placeholder="Email"
+              />
+            </div>
+
+            <div class="relative w-full mb-3">
+              <label
+                class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                htmlFor="message"
+              >
+                Message
+              </label>
+              <textarea
+                rows="4"
+                cols="80"
+                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                placeholder="Type a message..."
+              ></textarea>
+            </div>
+            <div class="text-center mt-6">
+              <button
+                class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                type="button"
+              >
+                Send Message
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<app-footer></app-footer>

@@ -5,26 +5,45 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './component/register/register.component';
 import { LoginComponent } from './component/login/login.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import { FormsModule} from '@angular/forms';
-import { HomeComponent } from './component/home/home.component';
 import { AddHotelComponent } from './component/hotel/add-hotel/add-hotel.component';
 import { AllHotelComponent } from './component/hotel/all-hotel/all-hotel.component';
 import { AddChamberComponent } from './component/chamber/add-chamber/add-chamber.component';
 import { AllChamberComponent } from './component/chamber/all-chamber/all-chamber.component';
 import { OneHotelComponent } from './component/hotel/one-hotel/one-hotel.component';
+import { LandingComponent } from './views/landing/landing.component';
+import { FooterComponent } from './component/footer/footer.component';
+import { HeaderComponent } from './component/header/header.component';
+import { DropDownComponent } from './component/drop-down/drop-down.component';
+import { AuthComponent } from './layout/auth/auth.component';
+import { CalendarComponent } from './component/calendar/calendar.component';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { SideBarComponent } from './layout/side-bar/side-bar.component';
+import { StatistiqueComponent } from './views/statistique/statistique.component';
+import { AdminComponent } from './layout/admin/admin.component';
+import { SatatisticComponent } from './component/card/satatistic/satatistic.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    HomeComponent,
     AddHotelComponent,
     AllHotelComponent,
     AddChamberComponent,
     AllChamberComponent,
-    OneHotelComponent
+    OneHotelComponent,
+    LandingComponent,
+    FooterComponent,
+    HeaderComponent,
+    DropDownComponent,
+    AuthComponent,
+    CalendarComponent,
+    SideBarComponent,
+    StatistiqueComponent,
+    AdminComponent,
+    SatatisticComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +51,13 @@ import { OneHotelComponent } from './component/hotel/one-hotel/one-hotel.compone
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
