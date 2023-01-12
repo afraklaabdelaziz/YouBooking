@@ -25,6 +25,9 @@ import { SatatisticComponent } from './component/card/satatistic/satatistic.comp
 import { AllUsersComponent } from './views/all-users/all-users.component';
 import { ChamberDesponibleComponent } from './views/chamber-desponible/chamber-desponible.component';
 import { OneRoomComponent } from './views/one-room/one-room.component';
+import { OwnerComponent } from './layout/owner/owner.component';
+import { StatisticOwnerComponent } from './views/statistic-owner/statistic-owner.component';
+import { HotelsOwnerComponent } from './views/hotels-owner/hotels-owner.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,10 @@ import { OneRoomComponent } from './views/one-room/one-room.component';
     SatatisticComponent,
     AllUsersComponent,
     ChamberDesponibleComponent,
-    OneRoomComponent
+    OneRoomComponent,
+    OwnerComponent,
+    StatisticOwnerComponent,
+    HotelsOwnerComponent
   ],
   imports: [
     BrowserModule,

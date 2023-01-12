@@ -105,8 +105,8 @@ public class HotelServiceImpl implements IHotelService {
     }
 
     @Override
-    public ResponseDTO findHotelByProprietaire(Long idProprietaire, Status status) {
-     return new ResponseDTO("success","hotels ",hotelRepository.findHotelByProprietaireAndStatus(idProprietaire,status));
+    public ResponseDTO findHotelByProprietaire(Long idProprietaire) {
+     return new ResponseDTO("success","hotels Of Owner ",hotelRepository.findHotelByProprietaireId(idProprietaire));
     }
 
     @Override

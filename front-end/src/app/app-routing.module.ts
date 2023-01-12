@@ -15,6 +15,7 @@ import * as path from "path";
 import { AdminComponent } from './layout/admin/admin.component';
 import { AllUsersComponent } from './views/all-users/all-users.component';
 import { OneRoomComponent } from './views/one-room/one-room.component';
+import { HotelsOwnerComponent } from './views/hotels-owner/hotels-owner.component';
 
 const routes: Routes = [
   {path: 'chamber',component: OneRoomComponent},
@@ -30,6 +31,14 @@ const routes: Routes = [
       {path: 'hotel_list', component: AllHotelComponent },
       {path: 'one_hotel/:id', component: OneHotelComponent },
       {path: 'user_list',component: AllUsersComponent}
+    ]
+  },
+  {
+    path: "owner",
+    component: AdminComponent,
+    children: [
+      {path: 'one_hotel/:id', component: OneHotelComponent },
+      {path: 'hotel_list',component: HotelsOwnerComponent}
     ]
   },
   {
