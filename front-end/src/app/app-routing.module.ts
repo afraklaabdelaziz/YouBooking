@@ -13,8 +13,11 @@ import { SideBarComponent } from './layout/side-bar/side-bar.component';
 import { LandingComponent } from './views/landing/landing.component';
 import * as path from "path";
 import { AdminComponent } from './layout/admin/admin.component';
+import { AllUsersComponent } from './views/all-users/all-users.component';
+import { OneRoomComponent } from './views/one-room/one-room.component';
 
 const routes: Routes = [
+  {path: 'chamber',component: OneRoomComponent},
   {path: 'add_hotel',component: AddHotelComponent},
   {path: 'all_hotel',component: AllHotelComponent,canActivate: [AuthGuard,RoleGuard],data:{role:'propritaire'}},
   {path: 'one_hotel/:id',component: OneHotelComponent},
@@ -22,7 +25,12 @@ const routes: Routes = [
   {path: '',component: LandingComponent},
   {
     path: "admin",
-    component: AdminComponent
+    component: AdminComponent,
+    children: [
+      {path: 'hotel_list', component: AllHotelComponent },
+      {path: 'one_hotel/:id', component: OneHotelComponent },
+      {path: 'user_list',component: AllUsersComponent}
+    ]
   },
   {
     path: "auth",

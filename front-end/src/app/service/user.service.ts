@@ -11,8 +11,29 @@ export class UserService {
 
   constructor(private http: HttpClient,private router:Router) { }
 
-  register(user:User):Observable<User>{
+  getAllUsers():Observable<any>{
+    return this.http.get("http://localhost:8080/user/all")
+  }
+
+  register(user:User):Observable<any>{
     return this.http.post<any>(`http://localhost:8080/user/add`,user)
+  }
+
+
+  bannUser(id:number):Observable<any>{
+    return this.http.put("http://localhost:8080/user/bannUser/"+id,null)
+  }
+
+  deleteUser(id:number):Observable<any>{
+    return this.http.delete("http://localhost:8080/user/delete/"+id)
+  }
+
+  updateUser(id:number,user:User):Observable<any>{
+    return this.http.put("http://localhost:8080/user/update/"+id,user);
+  }
+
+  findUser(tele:string):Observable<any>{
+    return this.http.get("http://localhost:8080/user/oneUser/"+tele)
   }
 
   login(login:any) {

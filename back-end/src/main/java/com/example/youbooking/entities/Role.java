@@ -1,5 +1,8 @@
 package com.example.youbooking.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 import javax.persistence.*;
 
 import java.io.Serializable;
@@ -30,10 +33,11 @@ public class Role implements Serializable {
         this.nom = nom;
     }
 
+    @JsonIgnore
     public List<User> getUsers() {
         return users;
     }
-
+    @JsonSetter
     public void setUsers(List<User> users) {
         this.users = users;
     }

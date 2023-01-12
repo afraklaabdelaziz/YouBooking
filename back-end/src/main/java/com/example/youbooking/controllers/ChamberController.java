@@ -3,6 +3,7 @@ package com.example.youbooking.controllers;
 import com.example.youbooking.dto.ChamberDto;
 import com.example.youbooking.entities.Chamber;
 import com.example.youbooking.entities.Reservation;
+import com.example.youbooking.entities.StatusChamber;
 import com.example.youbooking.services.IChamberService;
 import com.example.youbooking.services.IReservationService;
 import com.example.youbooking.services.dto.ResponseDTO;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/chamber")
@@ -38,11 +40,11 @@ public class ChamberController {
         return chamberService.addChamber(chamber);
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseDTO updateChamber(@Valid ChamberDto chamberDto,@PathVariable Long id){
+    @PutMapping("/update/{id}/{idHotel}")
+    public ResponseDTO updateChamber(@Valid @RequestBody ChamberDto chamberDto,@PathVariable Long id,@PathVariable Long idHotel){
         chamberDto.setId(id);
         Chamber chamber = DtoToEntity.chamberDtoToChamber(chamberDto);
-        return chamberService.updateChamber(chamber);
+        return chamberService.updateChamber(chamber,idHotel);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -54,5 +56,10 @@ public class ChamberController {
     public ResponseDTO resrever(@RequestBody Reservation reservation){
         return reservationService.addReservation(reservation);
     }
+
+@PostMapping("/chamberDespo")
+    public List<Chamber> findChambersDespo(@RequestBody Reservation reservation,@RequestParam("ville") String ville){
+        return chamberService.findChambersBySatatus(reservation,ville);
+}
 
 }

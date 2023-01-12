@@ -52,7 +52,7 @@ public class HotelController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseDTO updateChamber(@Valid HotelDto hotelDto,@PathVariable Long id){
+    public ResponseDTO updateChamber(@Valid @RequestBody HotelDto hotelDto,@PathVariable Long id){
         hotelDto.setId(id);
         Hotel hotel = DtoToEntity.hoteDtoToHotel(hotelDto);
         return hotelService.updateHotel(hotel);
@@ -61,5 +61,17 @@ public class HotelController {
     @DeleteMapping("/delete/{id}")
     public ResponseDTO deleteChamber(@PathVariable Long id){
         return hotelService.deleteHotel(id);
+    }
+
+    @PutMapping("updateStatusHotel/{id}")
+    public ResponseDTO updateStatus(@PathVariable Long id){
+        return hotelService.updateStatusHotel(id);
+    }
+
+    @GetMapping("/search")
+    public List<Hotel> searchHotel(@RequestParam(value = "nom",required = false) String nom
+                                   ,@RequestParam(value = "prix",required = false) String  tele
+                                    ,@RequestParam(value = "ville",required = false) String ville ){
+    return hotelService.findByCriteria(nom, tele,ville);
     }
 }

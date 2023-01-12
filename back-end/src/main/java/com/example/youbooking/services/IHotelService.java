@@ -1,8 +1,10 @@
 package com.example.youbooking.services;
 
+import com.example.youbooking.entities.Adresse;
 import com.example.youbooking.entities.Hotel;
 import com.example.youbooking.entities.Status;
 import com.example.youbooking.services.dto.ResponseDTO;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;
 
@@ -16,4 +18,6 @@ public interface IHotelService {
     public List<Hotel> findHotelsByStatus(Status status);
 
     ResponseDTO findHotelByProprietaire(Long idProprietaire, Status status);
+
+    List<Hotel> findByCriteria(String nom, String tele,String ville);
 }

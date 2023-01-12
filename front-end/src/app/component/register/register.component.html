@@ -1,58 +1,71 @@
 
-<div class="container mx-auto px-4">
-  <div class="flex content-center items-center justify-center">
-    <div class="w-full lg:w-6/12 px-4">
+
       <div
-        class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0"
+        class="relative flex flex-col min-w-0 break-words w-full mb-6 p-3 shadow-lg rounded-lg bg-blueGray-200 border-0"
       >
-        <div class="rounded-t mb-0 px-6 py-6">
-          <hr class="mt-6 border-b-1 border-blueGray-300" />
-        </div>
         <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-          <div class="text-blueGray-400 text-center mb-3 font-bold">
-            <small>Or sign up with credentials</small>
-          </div>
           <form method="post" #form="ngForm" (submit)="register(form)">
-            <div class="relative w-full mb-3">
-              <label
-                class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                htmlFor="grid-password"
-              >
-                Nom
-              </label>
-              <input
-                [(ngModel)]="user.nom" name="nom" type="text"
-                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                placeholder="Nom"
-              />
+
+            <div class="relative flex gap-3 w-full mb-3">
+              <div class="w-full">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-password"
+                >
+                  Nom
+                </label>
+                <input
+                  [(ngModel)]="user.nom" name="nom" type="text"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+                  placeholder="Nom"
+                />
+              </div>
+
+              <div class="w-full">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-password"
+                >
+                  Email
+                </label>
+                <input
+                  [(ngModel)]="user.email" name="email" type="email"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  placeholder="Email"
+                />
+              </div>
+
             </div>
 
-            <div class="relative w-full mb-3">
-              <label
-                class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                htmlFor="grid-password"
-              >
-                Email
-              </label>
-              <input
-                [(ngModel)]="user.email" name="email" type="email"
-                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                placeholder="Email"
-              />
-            </div>
 
-            <div class="relative w-full mb-3">
-              <label
-                class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                htmlFor="grid-password"
-              >
-                Telephone
-              </label>
-              <input
-                [(ngModel)]="user.telephone" name="telephone" type="text"
-                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                placeholder="Telephone"
-              />
+            <div class="relative flex gap-3 w-full mb-3">
+
+              <div class="w-full">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-password"
+                >
+                  Telephone
+                </label>
+                <input
+                  [(ngModel)]="user.telephone" name="telephone" type="text"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  placeholder="Telephone"
+                />
+              </div>
+              <div class="w-full">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-password"
+                >
+                  Password
+                </label>
+                <input
+                  [(ngModel)]="user.password" name="password" type="password"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  placeholder="Password"
+                />
+              </div>
             </div>
 
             <div class="relative w-full mb-3">
@@ -72,29 +85,65 @@
 
             </div>
 
-            <div class="relative w-full mb-3">
-              <label
-                class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                htmlFor="grid-password"
-              >
-                Password
-              </label>
-              <input
-                [(ngModel)]="user.password" name="password" type="password"
-                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                placeholder="Password"
-              />
+
+            <div class="relative flex gap-3 w-full mb-3">
+
+              <div class="w-full">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-password"
+                >
+                  Pays
+                </label>
+                <input
+                  [(ngModel)]="user.adresse.pays" name="pays" type="text"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  placeholder="pays"
+                />
+              </div>
+              <div class="w-full">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-password"
+                >
+                  Ville
+                </label>
+                <input
+                  [(ngModel)]="user.adresse.ville" name="ville" type="text"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  placeholder="ville"
+                />
+              </div>
             </div>
 
-            <div>
-              <label class="inline-flex items-center cursor-pointer">
+
+            <div class="relative w-full mb-3">
+
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-password"
+                >
+                  Adresse
+                </label>
                 <input
-                  id="customCheckLogin"
-                  type="checkbox"
-                  class="form-checkbox border-0 text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150 rounded"
+                  [(ngModel)]="user.adresse.adresse" name="adresse" type="text"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  placeholder="adresse"
                 />
-              </label>
             </div>
+              <div class="relative w-full mb-3">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-password"
+                >
+                  Password
+                </label>
+                <input
+                  [(ngModel)]="user.adresse.codePostal" name="codePostal" type="text"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  placeholder="Code Postal"
+                />
+              </div>
 
             <div class="text-center mt-6">
               <button
@@ -107,9 +156,7 @@
           </form>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+
 
 
 

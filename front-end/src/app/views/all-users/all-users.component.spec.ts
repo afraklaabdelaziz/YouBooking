@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AllChamberComponent } from './all-chamber.component';
+import { AllUsersComponent } from './all-users.component';
 
-describe('AllChamberComponent', () => {
-  let component: AllChamberComponent;
-  let fixture: ComponentFixture<AllChamberComponent>;
+describe('AllUsersComponent', () => {
+  let component: AllUsersComponent;
+  let fixture: ComponentFixture<AllUsersComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AllChamberComponent ]
+      declarations: [ AllUsersComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AllChamberComponent);
+    fixture = TestBed.createComponent(AllUsersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

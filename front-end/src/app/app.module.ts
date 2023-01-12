@@ -10,7 +10,6 @@ import { FormsModule} from '@angular/forms';
 import { AddHotelComponent } from './component/hotel/add-hotel/add-hotel.component';
 import { AllHotelComponent } from './component/hotel/all-hotel/all-hotel.component';
 import { AddChamberComponent } from './component/chamber/add-chamber/add-chamber.component';
-import { AllChamberComponent } from './component/chamber/all-chamber/all-chamber.component';
 import { OneHotelComponent } from './component/hotel/one-hotel/one-hotel.component';
 import { LandingComponent } from './views/landing/landing.component';
 import { FooterComponent } from './component/footer/footer.component';
@@ -23,6 +22,9 @@ import { SideBarComponent } from './layout/side-bar/side-bar.component';
 import { StatistiqueComponent } from './views/statistique/statistique.component';
 import { AdminComponent } from './layout/admin/admin.component';
 import { SatatisticComponent } from './component/card/satatistic/satatistic.component';
+import { AllUsersComponent } from './views/all-users/all-users.component';
+import { ChamberDesponibleComponent } from './views/chamber-desponible/chamber-desponible.component';
+import { OneRoomComponent } from './views/one-room/one-room.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,6 @@ import { SatatisticComponent } from './component/card/satatistic/satatistic.comp
     AddHotelComponent,
     AllHotelComponent,
     AddChamberComponent,
-    AllChamberComponent,
     OneHotelComponent,
     LandingComponent,
     FooterComponent,
@@ -43,7 +44,10 @@ import { SatatisticComponent } from './component/card/satatistic/satatistic.comp
     SideBarComponent,
     StatistiqueComponent,
     AdminComponent,
-    SatatisticComponent
+    SatatisticComponent,
+    AllUsersComponent,
+    ChamberDesponibleComponent,
+    OneRoomComponent
   ],
   imports: [
     BrowserModule,

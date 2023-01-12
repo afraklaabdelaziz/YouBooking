@@ -19,4 +19,8 @@ public interface IUserService {
     ResponseDTO findUserByTelephone(String telephone);
 
     UserDetails findUserByEmail(String email);
+
+    ResponseDTO delete(Long idUser);
+
+    ResponseDTO searchUser(String nom, String telephone, String email);
 }

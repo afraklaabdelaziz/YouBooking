@@ -37,7 +37,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/**/user/**").permitAll()
-                 .antMatchers("/hotel/**").hasAuthority("client")
+                 .antMatchers("/hotel/**").permitAll()
 //                .antMatchers("/api/produits").hasAnyAuthority("client","stock")
 //                .antMatchers("/api/produits/**").hasAuthority("stock")
 //                .antMatchers("/api/appelOffre/add").hasAuthority("stock")

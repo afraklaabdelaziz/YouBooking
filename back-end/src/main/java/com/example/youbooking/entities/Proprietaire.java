@@ -1,5 +1,6 @@
 package com.example.youbooking.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -7,7 +8,7 @@ import java.util.List;
 
 @Entity
 public class Proprietaire extends User{
-    @OneToMany(mappedBy = "proprietaire")
+    @OneToMany(mappedBy = "proprietaire",cascade = CascadeType.ALL)
     private List<Hotel> hotels;
 
     public Proprietaire(List<Hotel> hotels) {

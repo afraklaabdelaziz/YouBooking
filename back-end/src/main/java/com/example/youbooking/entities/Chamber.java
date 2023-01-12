@@ -22,7 +22,7 @@ public class Chamber implements Serializable {
     @ManyToOne
     private Hotel hotel;
 
-    @OneToMany(mappedBy = "chamber" ,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "chamber" ,fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Reservation> reservationList;
 
 
@@ -85,11 +85,11 @@ public class Chamber implements Serializable {
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;
     }
-
+@JsonIgnore
     public List<Reservation> getReservationList() {
         return reservationList;
     }
-
+@JsonSetter
     public void setReservationList(List<Reservation> reservationList) {
         this.reservationList = reservationList;
     }

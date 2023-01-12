@@ -1,0 +1,307 @@
+
+
+<div
+  class="relative flex flex-col bg-white min-w-0 break-words w-full mb-6 shadow-lg rounded"
+>
+  <div class="rounded-t mb-0 px-4 py-3 border-0">
+    <div class="flex flex-wrap items-center">
+      <div class="relative w-full px-4 max-w-full flex justify-between ">
+        <h3
+          class="font-semibold text-lg text-blueGray-700"
+        >
+          Users
+        </h3>
+
+        <button (click)="toggleModalAdd()" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+          add User
+        </button>
+
+      </div>
+    </div>
+  </div>
+  <div class="block w-full overflow-x-auto">
+    <!-- Projects table -->
+    <table class="items-center w-full bg-transparent border-collapse">
+      <thead>
+      <tr>
+        <th
+          class=" bg-blueGray-50 text-blueGray-500 border-blueGray-100 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        >
+          Nom
+        </th>
+        <th
+          class=" bg-blueGray-50 text-blueGray-500 border-blueGray-100 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        >
+          Telephone
+        </th>
+
+        <th
+          class=" bg-blueGray-50 text-blueGray-500 border-blueGray-100 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        >
+          Ville
+        </th>
+
+        <th
+          class=" bg-blueGray-50 text-blueGray-500 border-blueGray-100 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        >
+          Status
+        </th>
+        <th
+          class=" bg-blueGray-50 text-blueGray-500 border-blueGray-100 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+
+        >
+          Role
+        </th>
+        <th
+          class=" bg-blueGray-50 text-blueGray-500 border-blueGray-100 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        >
+          Action
+        </th>
+        <th
+          class=" bg-blueGray-50 text-blueGray-500 border-blueGray-100 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        ></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users">
+        <th
+          class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
+        >
+          <img
+            src="assets/img/bootstrap.jpg"
+            class="h-12 w-12 bg-white rounded-full border"
+            alt="..."
+          />
+          <span
+            class="ml-3 font-bold text-blueGray-600"
+          >
+              {{user.nom}}
+            </span>
+        </th>
+        <td
+          class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+          {{user.telephone}}
+        </td>
+
+        <td
+          class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+          {{user.adresse.ville}}
+        </td>
+
+        <td
+          class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+          <i class="{{user.status == 'Desactive' ? 'text-orange-500' : 'text-green-500'}} fas fa-circle mr-2" ></i>  {{user.status}}
+          <i class="fas fa-edit mx-2 text-lg" (click)="updateStatusUser(user.id)"></i>
+        </td>
+        <td
+          class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+          {{user.role.nom}}
+        </td>
+        <td
+          class="border-t-0 text-blue-600 px-6 text-lg flex gap-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+          <i class="fas fa-pen" (click)="toggleModal()" (click)="update(user.telephone)"></i>
+          <i class="fas fa-trash"(click)="delete(user.id)"></i>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!--start form add-->
+<div *ngIf="showModalAdd" class="overflow-x-hidden fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+  <div class="relative w-auto max-w-4xl">
+    <!--content-->
+    <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+      <!--header-->
+      <div class="flex items-start justify-between p-2 border-b border-solid  rounded-t">
+        <h3 class="text-3xl font-semibold">
+         Add User
+        </h3>
+        <button class=" ml-auto border-0 text-black  text-3xl leading-none font-semibold outline-none focus:outline-none" (click)="toggleModalAdd()">
+          <span class="text-black  h-6 w-6 text-2xl block outline-none focus:outline-none">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+      </div>
+      <!--body-->
+      <div>
+        <app-register></app-register>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="showModalAdd" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
+<!--end form add-->
+
+
+
+<!--start form update-->
+<div *ngIf="showModal" class="overflow-x-hidden fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+  <div class="relative w-auto max-w-4xl">
+    <!--content-->
+    <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+      <!--header-->
+      <div class="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+        <h3 class="text-3xl font-semibold">
+          Modal Title
+        </h3>
+        <button class=" ml-auto border-0 text-black  text-3xl leading-none font-semibold outline-none focus:outline-none" (click)="toggleModal()">
+          <span class="text-black  h-6 w-6 text-2xl block outline-none focus:outline-none">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+      </div>
+      <!--body-->
+      <div>
+
+        <div class="px-4">
+          <div class="flex">
+            <div class="w-full">
+              <div
+                class="relative flex break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0"
+              >
+                <div class="px-4 py-10 pt-0">
+
+                  <form method="post" #form="ngForm" (submit)="updateUser(form)">
+
+                    <div class="relative flex gap-3 w-full mb-3">
+                      <div class="w-full">
+                        <label
+                          class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                          htmlFor="grid-password"
+                        >
+                          Nom
+                        </label>
+                        <input
+                           name="nom" [(ngModel)]="userFound.nom" type="text"
+                          class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+                          placeholder="Nom"
+                        />
+                      </div>
+
+                      <div class="w-full">
+                        <label
+                          class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                          htmlFor="grid-password"
+                        >
+                          Email
+                        </label>
+                        <input
+                           [(ngModel)]="userFound.email" name="email" type="email"
+                          class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                          placeholder="Email"
+                        />
+                      </div>
+
+                    </div>
+
+
+                    <div class="relative w-full mb-3">
+
+                        <label
+                          class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                          htmlFor="grid-password"
+                        >
+                          Telephone
+                        </label>
+                        <input
+                          [(ngModel)]="userFound.telephone" name="telephone" type="text"
+                          class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                          placeholder="Telephone"
+                        />
+                    </div>
+
+
+                    <div class="relative flex gap-3 w-full mb-3">
+
+                      <div class="w-full">
+                        <label
+                          class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                          htmlFor="grid-password"
+                        >
+                          Pays
+                        </label>
+                        <input
+                          [(ngModel)]="userFound.adresse.pays" name="pays" type="text"
+                          class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                          placeholder="pays"
+                        />
+                      </div>
+                      <div class="w-full">
+                        <label
+                          class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                          htmlFor="grid-password"
+                        >
+                          Ville
+                        </label>
+                        <input
+                           [(ngModel)]="userFound.adresse.ville" name="ville" type="text"
+                          class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                          placeholder="ville"
+                        />
+                      </div>
+                    </div>
+
+
+                    <div class="relative w-full mb-3">
+
+                      <label
+                        class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="grid-password"
+                      >
+                        Adresse
+                      </label>
+                      <input
+                         [(ngModel)]="userFound.adresse.adresse" name="adresse" type="text"
+                        class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="adresse"
+                      />
+                    </div>
+                    <div class="relative w-full mb-3">
+                      <label
+                        class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="grid-password"
+                      >
+                        Password
+                      </label>
+                      <input
+                         [(ngModel)]="userFound.adresse.codePostal" name="codePostal" type="text"
+                        class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="Code Postal"
+                      />
+                    </div>
+
+                    <div class="text-center mt-6">
+                      <button
+                        class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                        type="submit"
+                      >
+                        Update
+                      </button>
+                    </div>
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <button class="text-red-500 text-end background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="toggleModal()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
+<!--end form update-->
+

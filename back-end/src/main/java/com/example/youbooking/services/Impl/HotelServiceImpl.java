@@ -1,5 +1,6 @@
 package com.example.youbooking.services.Impl;
 
+import com.example.youbooking.entities.Adresse;
 import com.example.youbooking.entities.Hotel;
 import com.example.youbooking.entities.Status;
 import com.example.youbooking.repositories.HotelRepository;
@@ -7,9 +8,14 @@ import com.example.youbooking.services.IAdresseService;
 import com.example.youbooking.services.IHotelService;
 import com.example.youbooking.services.IUserService;
 import com.example.youbooking.services.dto.ResponseDTO;
+import com.example.youbooking.utiles.SpecificationCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.criteria.Predicate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,8 +48,9 @@ public class HotelServiceImpl implements IHotelService {
             return new ResponseDTO("bad request","hotel is required");
         }else {
             Hotel hotelFind = hotelRepository.findById(hotel.getId()).get();
-            hotelFind.setNom(hotelFind.getNom());
+            hotelFind.setNom(hotel.getNom());
             hotelFind.setTelephone(hotel.getTelephone());
+            hotelRepository.save(hotelFind);
             return new ResponseDTO("success","your hotel is updated",hotelFind);
         }
     }
@@ -54,7 +61,11 @@ public class HotelServiceImpl implements IHotelService {
         if (!hotel.isPresent()){
             return new ResponseDTO("bad request","this hotel dont present");
         }else {
-            hotel.get().setStatus(Status.Active);
+            if (hotel.get().getStatus().equals(Status.Active)){
+                hotel.get().setStatus(Status.Desactive);
+            }else {
+                hotel.get().setStatus(Status.Active);
+            }
             hotelRepository.save(hotel.get());
             return new ResponseDTO("success","hotel actived");
         }
@@ -74,13 +85,14 @@ public class HotelServiceImpl implements IHotelService {
         return hotelRepository.findAll();
     }
 
+    @Transactional
     @Override
     public ResponseDTO deleteHotel(Long idHotel) {
-        Hotel hotel = hotelRepository.findById(idHotel).get();
-        if(hotel == null){
+        Optional<Hotel> hotel = hotelRepository.findById(idHotel);
+        if(!hotel.isPresent()){
             return new ResponseDTO("bad request","this hotel dont present");
         }else{
-            hotelRepository.delete(hotel);
+            hotelRepository.delete(hotel.get());
             return new ResponseDTO("success","hotel is delete",hotel);
         }
     }
@@ -95,6 +107,14 @@ public class HotelServiceImpl implements IHotelService {
     @Override
     public ResponseDTO findHotelByProprietaire(Long idProprietaire, Status status) {
      return new ResponseDTO("success","hotels ",hotelRepository.findHotelByProprietaireAndStatus(idProprietaire,status));
+    }
+
+    @Override
+    public List<Hotel> findByCriteria(String nom, String tele,String ville){
+        Adresse adresse = new Adresse();
+        adresse.setVille(ville);
+        System.out.println(adresse.getVille());
+        return hotelRepository.findAll(SpecificationCriteria.searchHotel(nom, tele,adresse));
     }
 
 }

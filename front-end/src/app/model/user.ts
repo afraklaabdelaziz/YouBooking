@@ -7,6 +7,7 @@ export class User {
     email: string;
     telephone:string;
     password:string;
+    public photo:string;
     role:Role;
     adresse:Adresse;
 
@@ -16,6 +17,7 @@ export class User {
     this.email = "";
     this.telephone = "";
     this.password = "";
+    this.photo = "";
     this.adresse = new Adresse();
     this.role = new Role();
   }

@@ -2,6 +2,7 @@ package com.example.youbooking.services.Impl;
 
 import com.example.youbooking.entities.Chamber;
 import com.example.youbooking.entities.Hotel;
+import com.example.youbooking.entities.Reservation;
 import com.example.youbooking.entities.StatusChamber;
 import com.example.youbooking.repositories.ChamberRepository;
 import com.example.youbooking.services.IChamberService;
@@ -9,7 +10,9 @@ import com.example.youbooking.services.IHotelService;
 import com.example.youbooking.services.dto.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,6 +32,7 @@ public class ChamberServiceImpl implements IChamberService {
             return new ResponseDTO("bad request","hotel first");
 
         }else{
+
             chamber.setStatusChamber(StatusChamber.Disponible);
             System.out.println(chamber.getHotel().getId());
            Hotel hotel = (Hotel) hotelService.findOneHotel(chamber.getHotel().getId()).getData();
@@ -39,7 +43,9 @@ public class ChamberServiceImpl implements IChamberService {
     }
 
     @Override
-    public ResponseDTO updateChamber(Chamber chamber) {
+    public ResponseDTO updateChamber(Chamber chamber, Long idHotel) {
+        Hotel hotel = (Hotel) hotelService.findOneHotel(idHotel).getData();
+        chamber.setHotel(hotel);
         if(chamber == null || chamber == new Chamber() ){
             return new ResponseDTO("bad request","room is required");
         }
@@ -56,14 +62,15 @@ public class ChamberServiceImpl implements IChamberService {
         }
     }
 
+    @Transactional
     @Override
     public ResponseDTO deleteChamber(Long idChamber) {
-        Chamber chamber = chamberRepository.findById(idChamber).get();
-        if(chamber == null){
+        Optional<Chamber> chamber = chamberRepository.findById(idChamber);
+        if(!chamber.isPresent()){
             return new ResponseDTO("bad request","this room doesn't exist");
         }else{
-            chamberRepository.delete(chamber);
-            return new ResponseDTO("success","Room is deleted",chamber);
+            chamberRepository.delete(chamber.get());
+            return new ResponseDTO("success","Room is deleted",chamber.get());
         }
 
     }
@@ -94,6 +101,12 @@ public class ChamberServiceImpl implements IChamberService {
             return new ResponseDTO("success","room updated",chamberFound);
         }
     }
+
+    @Override
+    public List<Chamber> findChambersBySatatus(Reservation reservation, String ville){
+        return chamberRepository.findAllByStatusChamber(StatusChamber.Disponible, ville,reservation.getDateDebut());
+    }
+
 
 //    public boolean checkListContainsObjet(List<Reservation> list ,Reservation reservation){
 //        return list.stream().map(Reservation::getClass).filter(reservation::equals).findFirst().isPresent();

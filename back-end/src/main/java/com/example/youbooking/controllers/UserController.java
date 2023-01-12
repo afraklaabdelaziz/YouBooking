@@ -39,7 +39,7 @@ public class UserController {
     @Autowired
     JwtUtils jwtUtils;
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseDTO allUsers(){
         return new ResponseDTO("sucesss","users users",userService.findAllUsers());
     }
@@ -48,6 +48,16 @@ public class UserController {
     @GetMapping("/usersBan")
     public List<User> findHotelsByStatusDesactive(){
         return userService.findUserByStatus(Status.Desactive);
+    }
+
+    @GetMapping("/oneUser/{telephone}")
+    public ResponseDTO findUser(@PathVariable String telephone){
+        return userService.findUserByTelephone(telephone);
+    }
+
+    @PutMapping("/bannUser/{id}")
+    public ResponseDTO bannUser(@PathVariable Long id){
+        return userService.bannerUser(id);
     }
 
     @PostMapping("/add")
@@ -71,7 +81,6 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    @ResponseBody
     public ResponseEntity<ResponseDTO> auth(@RequestBody LoginDto login){
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login.getEmail(),login.getPassword()));
         UserDetails user = userService.findUserByEmail(login.getEmail());
@@ -81,5 +90,26 @@ public class UserController {
         }
         return ResponseEntity.status(400).body(new ResponseDTO("bad request","user not found"));
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseDTO deleteUser(@PathVariable Long id){
+    return userService.delete(id);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseDTO updateUser(@RequestBody UserDto userDto, @PathVariable Long id){
+        userDto.setId(id);
+        System.out.println(userDto.getId());
+       User user = DtoToEntity.userDtoToUser(userDto);
+        return userService.updateUser(user);
+    }
+
+    @GetMapping("/search")
+    public ResponseDTO searchUsers(@RequestParam(value = "nom",required = false) String nom
+                                   ,@RequestParam(value = "telephone",required = false) String telephone,
+                                   @RequestParam(value = "email",required = false) String email){
+        return userService.searchUser(nom,telephone,email);
+    }
+
 
 }

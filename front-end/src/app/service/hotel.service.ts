@@ -22,7 +22,7 @@ export class HotelService {
     return this.http.get("http://localhost:8080/hotel/proprietair")
   }
 
-  addHotel(hotel:Hotel):Observable<Hotel>{
+  addHotel(hotel:Hotel):Observable<any>{
     return this.http.post<any>("http://localhost:8080/hotel/add",hotel)
   }
 
@@ -36,5 +36,9 @@ export class HotelService {
 
   deleteHotel(id:number):Observable<any>{
     return this.http.delete("http://localhost:8080/hotel/delete/"+id)
+  }
+
+  updateStatusHotel(id:number):Observable<any>{
+    return this.http.put("http://localhost:8080/hotel/updateStatusHotel/"+id,null)
   }
 }
