@@ -63,7 +63,7 @@ export class SatatisticComponent {
   }
   set statDescripiron(statDescripiron: string) {
     this._statDescripiron =
-      statDescripiron === undefined ? "Since last month" : statDescripiron;
+      statDescripiron === undefined ? "" : statDescripiron;
   }
   private _statDescripiron = "Since last month";
 

@@ -28,6 +28,8 @@ import { OneRoomComponent } from './views/one-room/one-room.component';
 import { OwnerComponent } from './layout/owner/owner.component';
 import { StatisticOwnerComponent } from './views/statistic-owner/statistic-owner.component';
 import { HotelsOwnerComponent } from './views/hotels-owner/hotels-owner.component';
+import { OwnerReservationListComponent } from './views/owner-reservation-list/owner-reservation-list.component';
+import { ReservationListOncoursComponent } from './views/reservation-list-oncours/reservation-list-oncours.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { HotelsOwnerComponent } from './views/hotels-owner/hotels-owner.componen
     OneRoomComponent,
     OwnerComponent,
     StatisticOwnerComponent,
-    HotelsOwnerComponent
+    HotelsOwnerComponent,
+    OwnerReservationListComponent,
+    ReservationListOncoursComponent,
   ],
   imports: [
     BrowserModule,

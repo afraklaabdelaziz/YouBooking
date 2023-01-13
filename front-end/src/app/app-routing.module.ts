@@ -16,6 +16,9 @@ import { AdminComponent } from './layout/admin/admin.component';
 import { AllUsersComponent } from './views/all-users/all-users.component';
 import { OneRoomComponent } from './views/one-room/one-room.component';
 import { HotelsOwnerComponent } from './views/hotels-owner/hotels-owner.component';
+import { OwnerComponent } from './layout/owner/owner.component';
+import { OwnerReservationListComponent } from './views/owner-reservation-list/owner-reservation-list.component';
+import { ReservationListOncoursComponent } from './views/reservation-list-oncours/reservation-list-oncours.component';
 
 const routes: Routes = [
   {path: 'chamber',component: OneRoomComponent},
@@ -35,10 +38,12 @@ const routes: Routes = [
   },
   {
     path: "owner",
-    component: AdminComponent,
+    component: OwnerComponent,
     children: [
       {path: 'one_hotel/:id', component: OneHotelComponent },
-      {path: 'hotel_list',component: HotelsOwnerComponent}
+      {path: 'hotel_list',component: HotelsOwnerComponent},
+      {path: 'reservation_list',component: OwnerReservationListComponent},
+      {path: 'resrevation_encours',component: ReservationListOncoursComponent}
     ]
   },
   {

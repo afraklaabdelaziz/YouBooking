@@ -75,7 +75,6 @@ ngOnInit():void{
     }).then((result) => {
       if (result.isConfirmed) {
         this.chamberService.deleteRoom(id).subscribe((res:any)=>{
-          console.log(res)
           if (res.status == 'success'){
             Swal.fire(
               'Deleted!',

@@ -94,8 +94,8 @@ public class ReservationServiceImpl implements IReservationService {
     }
 
     @Override
-    public ResponseDTO findAllResrvations() {
-        return new ResponseDTO("success","list reservation",reservationRepository.findAll());
+    public List<Reservation> findAllResrvations() {
+       return reservationRepository.findAll();
     }
 
     @Override
@@ -143,6 +143,30 @@ public class ReservationServiceImpl implements IReservationService {
                 ,status);
 
         return reservation;
+    }
+
+    @Override
+    public ResponseDTO updateStatusReservation(Long idReservation, StatusReservation status){
+        Optional<Reservation> reservation = reservationRepository.findById(idReservation);
+        if (!reservation.isPresent()){
+            return new ResponseDTO("bad request","reservation doesn't exist");
+        }else {
+            if (status.equals(StatusReservation.Accepte)) {
+                reservation.get().setStatusReservation(StatusReservation.Accepte);
+                chamberService.updateStatusChamber(reservation.get().getChamber().getId(), StatusChamber.Indisponible);
+                reservationRepository.save(reservation.get());
+                return new ResponseDTO("success", "your reservation is accepted");
+
+            } else if (status.equals(StatusReservation.Refuse)) {
+                reservation.get().setStatusReservation(StatusReservation.Refuse);
+                reservationRepository.save(reservation.get());
+                return new ResponseDTO("success", "your reservation is refused");
+
+            } else {
+                return new ResponseDTO("attend", "attend");
+            }
+        }
+
     }
 
 

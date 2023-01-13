@@ -57,7 +57,7 @@ public class ChamberController {
         return reservationService.addReservation(reservation);
     }
 
-@PostMapping("/chamberDespo")
+    @PostMapping("/chamberDespo")
     public List<Chamber> findChambersDespo(@RequestBody Reservation reservation,@RequestParam("ville") String ville){
         return chamberService.findChambersBySatatus(reservation,ville);
 }

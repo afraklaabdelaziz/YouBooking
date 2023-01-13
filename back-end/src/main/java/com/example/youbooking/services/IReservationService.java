@@ -12,7 +12,7 @@ public interface IReservationService {
     public ResponseDTO addReservation(Reservation reservation);
     public ResponseDTO updateReservation(Reservation reservation);
     public ResponseDTO annulerReservation(Long idResrvation);
-    public ResponseDTO findAllResrvations();
+    public List<Reservation> findAllResrvations();
     public ResponseDTO findOneResrvation(Long idResrvation);
     public List<Reservation> findByClientAndStatus(Long idClient,StatusReservation status);
     public List<Reservation> findByStatus(StatusReservation status);
@@ -24,4 +24,6 @@ public interface IReservationService {
             ,LocalDate dateDebut
             ,LocalDate dateFin
             ,StatusReservation status);
+
+    ResponseDTO updateStatusReservation(Long idReservation, StatusReservation status);
 }

@@ -91,16 +91,15 @@ public class ChamberServiceImpl implements IChamberService {
 
     @Override
     public ResponseDTO updateStatusChamber(Long idChamber, StatusChamber status) {
-        Chamber chamberFound = (Chamber) this.findOneChamber(idChamber).getData();
-        if (chamberFound == null){
+        Optional<Chamber> chamberFound = chamberRepository.findById(idChamber);
+        if(!chamberFound.isPresent()){
             return new ResponseDTO("bad request","this room doesn't exist");
-
         }else {
-            chamberFound.setStatusChamber(status);
-            chamberRepository.save(chamberFound);
-            return new ResponseDTO("success","room updated",chamberFound);
+                chamberFound.get().setStatusChamber(status);
+                chamberRepository.save(chamberFound.get());
+                return new ResponseDTO("success", "room updated", chamberFound);
+            }
         }
-    }
 
     @Override
     public List<Chamber> findChambersBySatatus(Reservation reservation, String ville){

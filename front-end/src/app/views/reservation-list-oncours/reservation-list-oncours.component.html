@@ -1,0 +1,108 @@
+
+<div
+  class="relative flex flex-col bg-white min-w-0 break-words w-full mb-6 shadow-lg rounded"
+>
+  <div class="rounded-t mb-0 px-4 py-3 border-0">
+    <div class="flex flex-wrap items-center">
+      <div class="relative w-full px-4 max-w-full flex justify-between ">
+        <h3
+          class="font-semibold text-lg text-blueGray-700"
+        >
+          Reservations Encours
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div class="block w-full overflow-x-auto">
+    <!-- Projects table -->
+    <table class="items-center w-full bg-transparent border-collapse">
+      <thead>
+      <tr>
+        <th
+          class=" bg-blueGray-50 text-blueGray-500 border-blueGray-100 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        >
+          Date Debut
+        </th>
+        <th
+          class=" bg-blueGray-50 text-blueGray-500 border-blueGray-100 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        >
+          Date Fin
+        </th>
+
+        <th
+          class=" bg-blueGray-50 text-blueGray-500 border-blueGray-100 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        >
+          Hotel
+        </th>
+
+        <th
+          class=" bg-blueGray-50 text-blueGray-500 border-blueGray-100 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        >
+          N° Chamber
+        </th>
+
+        <th
+          class=" bg-blueGray-50 text-blueGray-500 border-blueGray-100 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        >
+          Client
+        </th>
+        <th
+          class=" bg-blueGray-50 text-blueGray-500 border-blueGray-100 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        >
+        Update Status
+        </th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let reservation of reservations">
+        <th
+          class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
+        >
+          <span
+            class="ml-3 font-bold text-blueGray-600"
+          >
+              {{reservation.dateDebut}}
+            </span>
+        </th>
+        <td
+          class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+          {{reservation.dateFin}}
+        </td>
+
+        <td
+          class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+          {{reservation.id}}
+        </td>
+
+        <td
+          class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+          {{reservation.chamber.numero}}
+        </td>
+
+        <td
+          class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+          {{reservation.client.nom}}
+        </td>
+
+        <td
+          class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 flex"
+        >
+          <i class="{{reservation.statusReservation == 'Refuse' ? 'text-orange-500' : 'text-green-500'}} fas fa-circle mr-2 mt-3" ></i>
+          <select [(ngModel)]="status" (change)="updateStatus(reservation.id,status)" class=" fas fa-edit border border-0 text-gray-900 text-sm rounded-lg  p-2.5  dark:placeholder-gray-400 dark:text-white ">
+            <option selected value="EnCours">Encours</option>
+            <option value="Accepte">Accepte</option>
+            <option value="Refuse">Refuse</option>
+          </select>
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

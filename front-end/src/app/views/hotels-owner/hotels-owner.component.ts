@@ -12,7 +12,6 @@ constructor(private hotelService:HotelService) {}
 
   ngOnInit(): void {
         this.hotelService.getAllHotelOfOwner(31).subscribe((res)=>{
-          console.log(res)
           this.ownerHotels = res.data;
         })
     }

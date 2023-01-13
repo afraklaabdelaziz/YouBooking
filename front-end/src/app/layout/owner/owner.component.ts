@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class OwnerComponent {
 
+  collapseShow = "hidden";
+  toggleCollapseShow(classes: string) {
+    this.collapseShow = classes;
+  }
 }
