@@ -15,7 +15,7 @@
     [routerLink]="['/owner/hotel_list']"
     class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
   >
-    <span class=""> Nom Owner </span>
+    <span class=""> {{userFound.nom}} </span>
   </a>
   <!-- User -->
 </div>
@@ -46,7 +46,7 @@
       [routerLink]="['/owner/hotel_list']"
       class=" md:block text-center md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
     >
-      <span class=""> Nom Admin </span>
+      <span class=""> {{userFound.nom}} </span>
     </a>
 
     <div class="flex items-center justify-center" >
@@ -123,7 +123,7 @@
 
       <li class="items-center">
         <a
-          [routerLink]="['/admin/logout']"
+          [routerLink]="['/logout']"
           class="text-xs uppercase py-3 font-bold block"
           routerLinkActive
           #adminMaps="routerLinkActive"

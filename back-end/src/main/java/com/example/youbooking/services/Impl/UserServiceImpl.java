@@ -1,5 +1,6 @@
 package com.example.youbooking.services.Impl;
 
+import com.example.youbooking.entities.Image;
 import com.example.youbooking.entities.Status;
 import com.example.youbooking.entities.User;
 import com.example.youbooking.repositories.UserRepository;
@@ -13,7 +14,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -54,8 +57,6 @@ public class UserServiceImpl implements IUserService {
         }else {
             Optional <User> userFind = userRepository.findById(user.getId());
             if (userFind.isPresent()){
-
-                System.out.println(user.getEmail());
 
                 userFind.get().setEmail(user.getEmail());
                 userFind.get().setNom(user.getNom());
@@ -125,6 +126,17 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public ResponseDTO getUserByEmail(String email){
+        User user = userRepository.findUserByEmail(email);
+        if(user == null){
+            return new ResponseDTO("bad request","this user dont present");
+
+        }else {
+            return new ResponseDTO("success","user",user);
+        }
+    }
+
+    @Override
     public UserDetails findUserByEmail(String email){
         User user = userRepository.findUserByEmail(email);
         if(user == null){
@@ -152,5 +164,13 @@ public class UserServiceImpl implements IUserService {
     public ResponseDTO searchUser(String nom, String telephone, String email){
         List<User> users =  userRepository.findAll(SpecificationCriteria.searchUser(nom,telephone,email));
         return new ResponseDTO("success","users Found",users);
+    }
+
+    public Image uploadImage(MultipartFile multipartFiles) throws IOException {
+        Image image = new Image(multipartFiles.getOriginalFilename(),
+                multipartFiles.getContentType(),
+                multipartFiles.getBytes());
+        return image;
+
     }
 }

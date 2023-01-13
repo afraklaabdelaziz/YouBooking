@@ -22,8 +22,8 @@ export class HotelService {
     return this.http.get("http://localhost:8080/hotel/proprietair/"+idOwner)
   }
 
-  addHotel(hotel:Hotel):Observable<any>{
-    return this.http.post<any>("http://localhost:8080/hotel/add",hotel)
+  addHotel(hotel:FormData ,email:string):Observable<any>{
+    return this.http.post<any>("http://localhost:8080/hotel/add/"+email,hotel)
   }
 
   getOneHotel(id:number):Observable<any>{

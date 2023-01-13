@@ -1,5 +1,11 @@
 
-
+      <div class="relative w-full mb-3">
+        <input
+          multiple value="select" #selectFile type="file"
+          (change)="imageSelected($event)"
+        />
+      </div>
+      
       <div
         class="relative flex flex-col min-w-0 break-words w-full mb-6 p-3 shadow-lg rounded-lg bg-blueGray-200 border-0"
       >

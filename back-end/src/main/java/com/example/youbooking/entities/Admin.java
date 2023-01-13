@@ -1,5 +1,8 @@
 package com.example.youbooking.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -23,10 +26,11 @@ public class Admin extends User{
 
     }
 
+    @JsonIgnore
     public List<Hotel> getHotels() {
         return hotels;
     }
-
+    @JsonSetter
     public void setHotels(List<Hotel> hotels) {
         this.hotels = hotels;
     }

@@ -2,15 +2,22 @@ package com.example.youbooking.controllers;
 
 import com.example.youbooking.dto.HotelDto;
 import com.example.youbooking.entities.Hotel;
+import com.example.youbooking.entities.Image;
 import com.example.youbooking.entities.Status;
 import com.example.youbooking.services.IHotelService;
 import com.example.youbooking.services.dto.ResponseDTO;
 import com.example.youbooking.utiles.DtoToEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.awt.*;
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/hotel")
@@ -45,10 +52,12 @@ public class HotelController {
         return hotelService.findOneHotel(id);
     }
 
-    @PostMapping("/add")
-    public ResponseDTO addChamber(@Valid @RequestBody HotelDto hotelDto){
+    @PostMapping(value = {"/add/{email}"},consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseDTO addChamber(@Valid @RequestPart("hotel") HotelDto hotelDto,
+                                  @RequestPart(value = "imageFile",required = false) MultipartFile file,
+                                  @PathVariable String email){
         Hotel hotel = DtoToEntity.hoteDtoToHotel(hotelDto);
-        return hotelService.addHotel(hotel);
+        return hotelService.addHotel(hotel,email,file);
     }
 
     @PutMapping("/update/{id}")
@@ -57,6 +66,8 @@ public class HotelController {
         Hotel hotel = DtoToEntity.hoteDtoToHotel(hotelDto);
         return hotelService.updateHotel(hotel);
     }
+
+
 
     @DeleteMapping("/delete/{id}")
     public ResponseDTO deleteChamber(@PathVariable Long id){

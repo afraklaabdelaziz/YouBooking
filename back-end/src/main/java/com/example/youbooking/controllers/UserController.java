@@ -11,11 +11,13 @@ import com.example.youbooking.services.IUserService;
 import com.example.youbooking.services.dto.ResponseDTO;
 import com.example.youbooking.utiles.DtoToEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -50,9 +52,10 @@ public class UserController {
         return userService.findUserByStatus(Status.Desactive);
     }
 
-    @GetMapping("/oneUser/{telephone}")
-    public ResponseDTO findUser(@PathVariable String telephone){
-        return userService.findUserByTelephone(telephone);
+
+    @GetMapping("/oneUser/{email}")
+    public ResponseDTO findUserByEmail(@PathVariable String email){
+        return userService.getUserByEmail(email);
     }
 
     @PutMapping("/bannUser/{id}")
@@ -60,21 +63,21 @@ public class UserController {
         return userService.bannerUser(id);
     }
 
-    @PostMapping("/add")
-    public ResponseDTO register(@Valid @RequestBody UserDto userDto){
+    @PostMapping(value = {"/add"},consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseDTO register(@Valid @RequestPart("user") UserDto userDto, @RequestPart(value = "imageFile",required = false)MultipartFile file){
         User user = DtoToEntity.userDtoToUser(userDto);
 
         Optional<Role> role = roleRepository.findById(user.getRole().getId());
 
         if (role.get().getNom().equals("client")){
             Client client = DtoToEntity.clientDtoToUser(userDto);
-             clientService.addClient(client);
+             clientService.addClient(client,file);
              return new ResponseDTO("success","success",client);
 
         }else if(role.get().getNom().equals("propritaire")){
             Proprietaire proprietaire = DtoToEntity.propritaireDtoToUser(userDto);
             proprietaire.setStatus(Status.Desactive);
-            return proprietaireService.addPropritaire(proprietaire);
+            return proprietaireService.addPropritaire(proprietaire,file);
         }
 
         return userService.addUser(user);

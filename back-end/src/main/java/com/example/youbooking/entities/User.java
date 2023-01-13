@@ -23,6 +23,8 @@ public class User implements Serializable {
     private Role role;
     @ManyToOne
     private Adresse adresse;
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private Image image;
 
     public User() {
     }
@@ -107,6 +109,14 @@ public class User implements Serializable {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 }
 

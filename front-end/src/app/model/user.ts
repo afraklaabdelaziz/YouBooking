@@ -1,5 +1,6 @@
 import { Adresse } from "./adresse";
 import { Role } from "./role";
+import { Image } from "./image"
 
 export class User {
     id?: number;
@@ -10,6 +11,7 @@ export class User {
     public photo:string;
     role:Role;
     adresse:Adresse;
+    image:Image[];
 
 
     constructor() {
@@ -20,6 +22,7 @@ export class User {
     this.photo = "";
     this.adresse = new Adresse();
     this.role = new Role();
+    this.image = [];
   }
 
 }

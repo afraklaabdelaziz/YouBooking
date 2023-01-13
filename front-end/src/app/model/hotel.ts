@@ -1,11 +1,13 @@
 import { Adresse } from "./adresse";
+import { Image } from "./image"
 
 export class Hotel {
   public id?:number;
   public nom:string;
   public telephone:string;
-  public photo:string;
+  public photo:any;
   public adresse:Adresse;
+  public image:Image[]
 
 
   constructor() {
@@ -13,5 +15,6 @@ export class Hotel {
     this.telephone = "";
     this.photo = "";
     this.adresse = new Adresse();
+    this.image = new Array() 
   }
 }

@@ -30,6 +30,7 @@ import { StatisticOwnerComponent } from './views/statistic-owner/statistic-owner
 import { HotelsOwnerComponent } from './views/hotels-owner/hotels-owner.component';
 import { OwnerReservationListComponent } from './views/owner-reservation-list/owner-reservation-list.component';
 import { ReservationListOncoursComponent } from './views/reservation-list-oncours/reservation-list-oncours.component';
+import { ProfileComponent } from './views/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { ReservationListOncoursComponent } from './views/reservation-list-oncour
     HotelsOwnerComponent,
     OwnerReservationListComponent,
     ReservationListOncoursComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

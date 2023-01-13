@@ -19,6 +19,7 @@ import { HotelsOwnerComponent } from './views/hotels-owner/hotels-owner.componen
 import { OwnerComponent } from './layout/owner/owner.component';
 import { OwnerReservationListComponent } from './views/owner-reservation-list/owner-reservation-list.component';
 import { ReservationListOncoursComponent } from './views/reservation-list-oncours/reservation-list-oncours.component';
+import { ProfileComponent } from './views/profile/profile.component';
 
 const routes: Routes = [
   {path: 'chamber',component: OneRoomComponent},
@@ -33,7 +34,8 @@ const routes: Routes = [
     children: [
       {path: 'hotel_list', component: AllHotelComponent },
       {path: 'one_hotel/:id', component: OneHotelComponent },
-      {path: 'user_list',component: AllUsersComponent}
+      {path: 'user_list',component: AllUsersComponent},
+      {path: 'profile',component: ProfileComponent}
     ]
   },
   {
@@ -43,7 +45,8 @@ const routes: Routes = [
       {path: 'one_hotel/:id', component: OneHotelComponent },
       {path: 'hotel_list',component: HotelsOwnerComponent},
       {path: 'reservation_list',component: OwnerReservationListComponent},
-      {path: 'resrevation_encours',component: ReservationListOncoursComponent}
+      {path: 'resrevation_encours',component: ReservationListOncoursComponent},
+      {path: 'profile',component: ProfileComponent}
     ]
   },
   {

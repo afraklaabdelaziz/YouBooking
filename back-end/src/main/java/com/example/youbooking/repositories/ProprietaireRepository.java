@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface ProprietaireRepository extends JpaRepository<Proprietaire,Long> {
     public List<Proprietaire> findByStatus(Status status);
+
+    Proprietaire findUserByEmail(String email);
 }

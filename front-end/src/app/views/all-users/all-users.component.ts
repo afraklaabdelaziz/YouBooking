@@ -67,8 +67,8 @@ export class AllUsersComponent {
     window.location.reload();
   }
 
-  update(tele: string) {
-    this.userService.findUser(tele).subscribe((res)=>{
+  update(email: string) {
+    this.userService.findUser(email).subscribe((res)=>{
       this.userFound = res.data
       this.idUser = res.data.id
     })

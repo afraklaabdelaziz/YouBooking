@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Hotel } from 'src/app/model/hotel';
 import { HotelService } from 'src/app/service/hotel.service';
@@ -15,7 +16,7 @@ export class AllHotelComponent implements OnInit {
   hotelFound!: Hotel;
   idHotel: number;
 
-  constructor(private hotelService: HotelService, private router: Router) {
+  constructor(private hotelService: HotelService, private router: Router,private sanitizer:DomSanitizer) {
     this.hotelFound = new Hotel()
   }
 

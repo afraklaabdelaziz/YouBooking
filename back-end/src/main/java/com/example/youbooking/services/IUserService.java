@@ -18,6 +18,8 @@ public interface IUserService {
 
     ResponseDTO findUserByTelephone(String telephone);
 
+    ResponseDTO getUserByEmail(String email);
+
     UserDetails findUserByEmail(String email);
 
     ResponseDTO delete(Long idUser);

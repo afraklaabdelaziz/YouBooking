@@ -5,4 +5,6 @@ import com.example.youbooking.services.dto.ResponseDTO;
 
 public interface IAdminService {
     ResponseDTO acceptePropritaire(Long idPropritaire);
+
+    ResponseDTO getUserByEmail(String email);
 }

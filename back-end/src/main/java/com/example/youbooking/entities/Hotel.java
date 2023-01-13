@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Hotel implements Serializable {
@@ -17,7 +18,6 @@ public class Hotel implements Serializable {
     @Column(unique = true)
     private String telephone;
     private Status status;
-    private String photo;
     @OneToOne
     private Adresse adresse;
     @ManyToOne
@@ -26,6 +26,9 @@ public class Hotel implements Serializable {
     private List<Chamber> chambers;
     @ManyToOne
     private Admin admin;
+
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private Image image;
 
     public Hotel(String nom, String telephone, Status status, Adresse adresse, Proprietaire proprietaire) {
         this.nom = nom;
@@ -103,11 +106,11 @@ public class Hotel implements Serializable {
         this.admin = admin;
     }
 
-    public String getPhoto() {
-        return photo;
+    public Image getImage() {
+        return image;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public void setImage(Image image) {
+        this.image = image;
     }
 }

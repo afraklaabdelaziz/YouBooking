@@ -15,7 +15,7 @@ export class UserService {
     return this.http.get("http://localhost:8080/user/all")
   }
 
-  register(user:User):Observable<any>{
+  register(user:FormData):Observable<any>{
     return this.http.post<any>(`http://localhost:8080/user/add`,user)
   }
 
@@ -32,8 +32,8 @@ export class UserService {
     return this.http.put("http://localhost:8080/user/update/"+id,user);
   }
 
-  findUser(tele:string):Observable<any>{
-    return this.http.get("http://localhost:8080/user/oneUser/"+tele)
+  findUser(email:string):Observable<any>{
+    return this.http.get("http://localhost:8080/user/oneUser/"+email)
   }
 
   login(login:any) {

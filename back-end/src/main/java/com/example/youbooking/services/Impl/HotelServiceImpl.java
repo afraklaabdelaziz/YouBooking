@@ -1,23 +1,21 @@
 package com.example.youbooking.services.Impl;
 
-import com.example.youbooking.entities.Adresse;
-import com.example.youbooking.entities.Hotel;
-import com.example.youbooking.entities.Status;
+import com.example.youbooking.entities.*;
 import com.example.youbooking.repositories.HotelRepository;
-import com.example.youbooking.services.IAdresseService;
-import com.example.youbooking.services.IHotelService;
-import com.example.youbooking.services.IUserService;
+import com.example.youbooking.services.*;
 import com.example.youbooking.services.dto.ResponseDTO;
 import com.example.youbooking.utiles.SpecificationCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.criteria.Predicate;
-import java.util.ArrayList;
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class HotelServiceImpl implements IHotelService {
@@ -28,12 +26,35 @@ public class HotelServiceImpl implements IHotelService {
     IAdresseService adresseService;
     @Autowired
     IUserService userService;
+    @Autowired
+    IAdminService adminService;
+    @Autowired
+    IProprietaireService proprietaireService;
+
+    @Value("${project.image}")
+    private String path;
 
     @Override
-    public ResponseDTO addHotel(Hotel hotel) {
+     public ResponseDTO addHotel(Hotel hotel, String email,MultipartFile file) {
+        User user = (User) userService.getUserByEmail(email).getData();
         if (hotel == null || hotel == new Hotel()){
             return new ResponseDTO("bad request","hotel is requred");
         }else {
+            if (user.getRole().getNom().equals("admin")){
+                Admin admin = (Admin) adminService.getUserByEmail(email).getData();
+                hotel.setAdmin(admin);
+            }else {
+                Proprietaire proprietaire = (Proprietaire) adminService.getUserByEmail(email).getData();
+                hotel.setProprietaire(proprietaire);
+            }
+
+            try {
+                Image images = uploadImage(file);
+                hotel.setImage(images);
+            }catch (Exception e){
+
+            }
+
             hotel.setStatus(Status.Desactive);
             adresseService.addAdressse(hotel.getAdresse());
             hotelRepository.save(hotel);
@@ -115,6 +136,16 @@ public class HotelServiceImpl implements IHotelService {
         adresse.setVille(ville);
         System.out.println(adresse.getVille());
         return hotelRepository.findAll(SpecificationCriteria.searchHotel(nom, tele,adresse));
+    }
+
+
+
+    public Image uploadImage(MultipartFile multipartFiles) throws IOException {
+            Image image = new Image(multipartFiles.getOriginalFilename(),
+                    multipartFiles.getContentType(),
+                    multipartFiles.getBytes());
+            return image;
+
     }
 
 }
