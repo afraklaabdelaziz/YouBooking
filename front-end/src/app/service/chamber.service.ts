@@ -31,7 +31,11 @@ export class ChamberService {
     return this.http.delete("http://localhost:8080/chamber/delete/"+id);
   }
 
-  reserverRoom(reservation:Reservation):Observable<any>{
-    return this.http.post("http://localhost:8080/chamber/reserver",reservation)
+  allRoomNoReserved(reservation:Reservation ,ville:string):Observable<any>{
+    return this.http.post("http://localhost:8080/chamber/roomDespo/"+ville,reservation)
+  }
+
+  reserverRoom(reservation:Reservation,idChamber:number,idClient:number):Observable<any>{
+    return this.http.post("http://localhost:8080/chamber/reserver/"+idChamber+'/'+idClient,reservation)
   }
 }

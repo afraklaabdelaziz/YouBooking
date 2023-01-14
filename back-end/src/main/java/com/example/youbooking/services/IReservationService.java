@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface IReservationService {
-    public ResponseDTO addReservation(Reservation reservation);
+    public ResponseDTO addReservation(Reservation reservation, Long idChamber, Long idClient);
     public ResponseDTO updateReservation(Reservation reservation);
     public ResponseDTO annulerReservation(Long idResrvation);
     public List<Reservation> findAllResrvations();

@@ -21,7 +21,7 @@
 
     <div class="relative top-40">
 
-      <form action="" class="flex flex-col md:flex-row gap-8 " method="POST">
+      <form action="" #form="ngForm" (submit)="roomsDesponible(form)" class="flex flex-col md:flex-row gap-8 " method="POST">
         <div class="flex flex-col">
           <label class="text-white">
            ville
@@ -29,6 +29,8 @@
           <input
             type="text"
             placeholder="ville"
+            [(ngModel)]="ville"
+            name="ville"
             class="rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] focus:border-[#6A64F1] focus:shadow-md"
           />
         </div>
@@ -39,6 +41,7 @@
           </label>
           <input
             type="date"
+            [(ngModel)]="reservation.dateDebut" name="dateDebut"
             placeholder="Check-In date"
             class="rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] focus:border-[#6A64F1] focus:shadow-md"
           />
@@ -52,6 +55,7 @@
           </label>
           <input
             type="date"
+            [(ngModel)]="reservation.dateFin" name="dateFin"
             placeholder="Check-In date"
             class=" appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
           />

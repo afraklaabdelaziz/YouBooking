@@ -1,11 +1,10 @@
 package com.example.youbooking.services.Impl;
 
-import com.example.youbooking.entities.Chamber;
-import com.example.youbooking.entities.Reservation;
-import com.example.youbooking.entities.StatusChamber;
-import com.example.youbooking.entities.StatusReservation;
+import com.example.youbooking.entities.*;
+import com.example.youbooking.repositories.ClientRepository;
 import com.example.youbooking.repositories.ReservationRepository;
 import com.example.youbooking.services.IChamberService;
+import com.example.youbooking.services.IClientService;
 import com.example.youbooking.services.IReservationService;
 import com.example.youbooking.services.dto.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +23,11 @@ public class ReservationServiceImpl implements IReservationService {
     @Autowired
     IChamberService chamberService;
 
+    @Autowired
+    ClientRepository clientRepository;
+
     @Override
-    public ResponseDTO addReservation(Reservation reservation) {
+    public ResponseDTO addReservation(Reservation reservation, Long idChamber, Long idClient) {
         if(reservation == null || reservation == new Reservation()){
             return new ResponseDTO("bad request","this is required");
 
@@ -33,10 +35,6 @@ public class ReservationServiceImpl implements IReservationService {
                 && reservation.getDateFin().isBefore(reservation.getDateDebut())){
             return new ResponseDTO("bad date","no date selected");
 
-
-        }else if (checkRoomReservedOrNo(reservation)){
-
-            return new ResponseDTO("reserved","this room is reserved in this date");
 
         } else if (this.findReservationByChamberAndDateDebutAndAndDateFinAndStatus(
                 reservation.getChamber(),
@@ -46,8 +44,13 @@ public class ReservationServiceImpl implements IReservationService {
             return new ResponseDTO("reserved","this room is reserved in this date");
 
         }else {
+            Optional<Chamber> chamber = (Optional<Chamber>) chamberService.findOneChamber(idChamber).getData();
+            Optional<Client> client = clientRepository.findById(idClient);
+            reservation.setChamber(chamber.get());
+            reservation.setClient(client.get());
+            reservation.setStatusReservation(StatusReservation.Encours);
             reservationRepository.save(reservation);
-            chamberService.updateStatusChamber(reservation.getChamber().getId(),StatusChamber.Indisponible);
+            chamberService.updateStatusChamber(idChamber,StatusChamber.Indisponible);
             return new ResponseDTO("success","your reservation is success",reservation);
         }
     }
@@ -61,10 +64,6 @@ public class ReservationServiceImpl implements IReservationService {
                 && reservation.getDateFin().isBefore(reservation.getDateDebut())){
             return new ResponseDTO("bad","no date selected");
 
-
-        }else if (checkRoomReservedOrNo(reservation)){
-
-            return new ResponseDTO("reserved","this room is reserved in this date");
 
         } else if (this.findReservationByChamberAndDateDebutAndAndDateFinAndStatus(
                 reservation.getChamber(),
@@ -169,14 +168,4 @@ public class ReservationServiceImpl implements IReservationService {
 
     }
 
-
-    public boolean checkRoomReservedOrNo(Reservation reservation){
-        reservation.getChamber().getReservationList().forEach(reservation1 -> {
-            if (reservation1.getDateDebut().isEqual(reservation.getDateDebut()) || reservation1.getDateFin().isEqual(reservation.getDateFin())){
-                System.out.println("resreved");
-                return;
-            }
-        });
-        return true;
-    }
 }

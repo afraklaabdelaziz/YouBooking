@@ -52,14 +52,15 @@ public class ChamberController {
         return chamberService.deleteChamber(id);
     }
 
-    @PostMapping("/reserver")
-    public ResponseDTO resrever(@RequestBody Reservation reservation){
-        return reservationService.addReservation(reservation);
+    @PostMapping("/reserver/{idChamber}/{idClient}")
+    public ResponseDTO resrever(@RequestBody Reservation reservation,@PathVariable Long idChamber,@PathVariable Long idClient){
+        return reservationService.addReservation(reservation,idChamber,idClient);
     }
 
-    @PostMapping("/chamberDespo")
-    public List<Chamber> findChambersDespo(@RequestBody Reservation reservation,@RequestParam("ville") String ville){
-        return chamberService.findChambersBySatatus(reservation,ville);
-}
+
+    @PostMapping("/roomDespo/{ville}")
+    public ResponseDTO allReservation(@RequestBody Reservation reservation,@PathVariable String ville){
+        return chamberService.allRoomsDesponible(reservation,ville);
+    }
 
 }

@@ -1,8 +1,10 @@
 package com.example.youbooking.controllers;
 
+import com.example.youbooking.entities.Chamber;
 import com.example.youbooking.entities.Reservation;
-import com.example.youbooking.entities.StatusChamber;
 import com.example.youbooking.entities.StatusReservation;
+import com.example.youbooking.repositories.ChamberRepository;
+import com.example.youbooking.repositories.ReservationRepository;
 import com.example.youbooking.services.IReservationService;
 import com.example.youbooking.services.dto.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,10 @@ import java.util.List;
 public class ReservationController {
     @Autowired
     IReservationService reservationService;
+    @Autowired
+    ReservationRepository reservationRepository;
+    @Autowired
+    ChamberRepository chamberRepository;
 
     @GetMapping("allreservation")
     public List<Reservation> getAllReservation(){
@@ -31,4 +37,5 @@ public class ReservationController {
     public ResponseDTO updateStatusReservation(@PathVariable Long id, @PathVariable StatusReservation status){
         return reservationService.updateStatusReservation(id,status);
     }
+
 }

@@ -21,11 +21,10 @@
         <div>
           <div class="inline-block align-bottom mr-5">
             <span class="text-2xl leading-none align-baseline">DH</span>
-            <span class="font-bold text-5xl leading-none align-baseline">59</span>
-            <span class="text-2xl leading-none align-baseline">.99</span>
+            <span class="font-bold text-5xl leading-none align-baseline">{{room.prix}}</span>
           </div>
           <div class="inline-block align-bottom">
-            <button class="bg-yellow-300 opacity-75 hover:opacity-100 text-yellow-900 hover:text-gray-900 rounded-full px-10 py-2 font-semibold">Reserver</button>
+            <button class="bg-yellow-300 opacity-75 hover:opacity-100 text-yellow-900 hover:text-gray-900 rounded-full px-10 py-2 font-semibold" (click)="reserver(room.id)">Reserver</button>
           </div>
         </div>
       </div>

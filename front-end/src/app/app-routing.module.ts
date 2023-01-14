@@ -20,13 +20,14 @@ import { OwnerComponent } from './layout/owner/owner.component';
 import { OwnerReservationListComponent } from './views/owner-reservation-list/owner-reservation-list.component';
 import { ReservationListOncoursComponent } from './views/reservation-list-oncours/reservation-list-oncours.component';
 import { ProfileComponent } from './views/profile/profile.component';
+import { ChamberDesponibleComponent } from './views/chamber-desponible/chamber-desponible.component';
 
 const routes: Routes = [
-  {path: 'chamber',component: OneRoomComponent},
+  {path: 'chamber/:id',component: OneRoomComponent},
   {path: 'add_hotel',component: AddHotelComponent},
-  {path: 'all_hotel',component: AllHotelComponent,canActivate: [AuthGuard,RoleGuard],data:{role:'propritaire'}},
+  {path: 'all_hotel',component: AllHotelComponent,canActivate: [AuthGuard,RoleGuard],data:{role:'client'}},
   {path: 'one_hotel/:id',component: OneHotelComponent},
-  {path: 'add_chamber/:id',component: AddChamberComponent},
+  {path: 'chamber_Despo',component: ChamberDesponibleComponent},
   {path: '',component: LandingComponent},
   {
     path: "admin",
