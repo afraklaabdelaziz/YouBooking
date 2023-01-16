@@ -31,6 +31,8 @@ import { HotelsOwnerComponent } from './views/hotels-owner/hotels-owner.componen
 import { OwnerReservationListComponent } from './views/owner-reservation-list/owner-reservation-list.component';
 import { ReservationListOncoursComponent } from './views/reservation-list-oncours/reservation-list-oncours.component';
 import { ProfileComponent } from './views/profile/profile.component';
+import { ClientComponent } from './layout/client/client.component';
+import { LogoutComponent } from './component/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,8 @@ import { ProfileComponent } from './views/profile/profile.component';
     OwnerReservationListComponent,
     ReservationListOncoursComponent,
     ProfileComponent,
+    ClientComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
