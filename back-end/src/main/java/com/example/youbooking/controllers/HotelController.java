@@ -37,9 +37,9 @@ public class HotelController {
         return hotelService.findHotelsByStatus(Status.Desactive);
     }
 
-    @GetMapping("/proprietair/{idOwner}")
-    public ResponseDTO findHotelByPropritaire(@PathVariable Long idOwner){
-        return hotelService.findHotelByProprietaire(idOwner);
+    @GetMapping("/proprietair/{email}")
+    public ResponseDTO findHotelByPropritaire(@PathVariable String email){
+        return hotelService.findHotelByProprietaire(email);
     }
 
     @GetMapping("/all")

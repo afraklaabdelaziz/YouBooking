@@ -39,12 +39,14 @@ public class ClientServiceImpl implements IClientService {
             adresseService.addAdressse(client.getAdresse());
             client.setPassword(new BCryptPasswordEncoder().encode(client.getPassword()));
             client.setStatus(Status.Active);
+
             try {
                 Image image = uploadImage(file);
                 client.setImage(image);
             }catch (Exception e){
 
             }
+
             clientRepository.save(client);
             return new ResponseDTO("success","user is added",client);
         }

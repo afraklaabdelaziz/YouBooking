@@ -30,7 +30,8 @@ public class ChamberServiceImpl implements IChamberService {
             return new ResponseDTO("bad request", "room is required");
         } else if (chamber.getHotel() == null) {
             return new ResponseDTO("bad request", "hotel first");
-
+        } else if (chamber.getPrix() <= 0){
+            return new ResponseDTO("bad request","prix has been than 0");
         } else {
 
             chamber.setStatusChamber(StatusChamber.Disponible);
@@ -85,7 +86,7 @@ public class ChamberServiceImpl implements IChamberService {
         if (!chamber.isPresent()) {
             return new ResponseDTO("bad request", "this room doesn't exist");
         }
-        return new ResponseDTO("success", "your room ", chamber);
+        return new ResponseDTO("success", "your room ", chamber.get());
     }
 
     @Override
