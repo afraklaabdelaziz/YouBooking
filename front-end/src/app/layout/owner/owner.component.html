@@ -16,7 +16,7 @@
         [routerLink]="['/owner/hotel_list']"
         class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
       >
-        <span class=""> Nom Owner </span>
+        <span class=""> {{userFound.nom}} </span>
       </a>
       <!-- User -->
   </div>
@@ -47,11 +47,18 @@
           [routerLink]="['/owner/hotel_list']"
           class=" md:block text-center md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
         >
-          <span class=""> Nom Owner </span>
+          <span class=""> {{userFound.nom}} </span>
         </a>
 
         <div class="flex items-center justify-center" >
-          <img src="assets/img/hotel1.jpg" class="rounded-full h-36 w-36">
+
+          <div *ngIf="userFound.image == null"  class="flex justify-center items-center text-6xl bg-blue-200 shadow-xl rounded-full border-none h-36 w-36" >
+                          <span>
+                            {{userFound.nom[0].toUpperCase()}}  {{userFound.nom[1].toUpperCase()}}
+                          </span>
+          </div>
+
+          <img *ngIf="userFound.image != null" [src]="image"  class="rounded-full h-36 w-36">
         </div>
 
 
@@ -124,7 +131,7 @@
 
           <li class="items-center">
             <a
-              [routerLink]="['/admin/maps']"
+              [routerLink]="['/owner/logout']"
               class="text-xs uppercase py-3 font-bold block"
               routerLinkActive
               #adminMaps="routerLinkActive"

@@ -41,11 +41,12 @@ public class HotelServiceImpl implements IHotelService {
             return new ResponseDTO("bad request","hotel is requred");
         }else {
             if (user.getRole().getNom().equals("admin")){
-                Admin admin = (Admin) adminService.getUserByEmail(email).getData();
+                Admin admin = (Admin) userService.getUserByEmail(email).getData();
                 hotel.setAdmin(admin);
-            }else {
-                Proprietaire proprietaire = (Proprietaire) adminService.getUserByEmail(email).getData();
+            }else if (user.getRole().getNom().equals("proprietaire")){
+                Proprietaire proprietaire = (Proprietaire) proprietaireService.getUserByEmail(email).getData();
                 hotel.setProprietaire(proprietaire);
+                System.out.println(proprietaire.getNom());
             }
 
             try {
@@ -126,8 +127,9 @@ public class HotelServiceImpl implements IHotelService {
     }
 
     @Override
-    public ResponseDTO findHotelByProprietaire(Long idProprietaire) {
-     return new ResponseDTO("success","hotels Of Owner ",hotelRepository.findHotelByProprietaireId(idProprietaire));
+    public ResponseDTO findHotelByProprietaire(String email) {
+        Proprietaire proprietaire = (Proprietaire) proprietaireService.getUserByEmail(email).getData();
+     return new ResponseDTO("success","hotels Of Owner ",hotelRepository.findHotelByProprietaire(proprietaire));
     }
 
     @Override

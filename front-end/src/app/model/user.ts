@@ -22,7 +22,7 @@ export class User {
     this.photo = "";
     this.adresse = new Adresse();
     this.role = new Role();
-    this.image = [];
+    this.image = new Array();
   }
 
 }

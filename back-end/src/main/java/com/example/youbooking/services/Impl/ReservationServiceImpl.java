@@ -4,7 +4,7 @@ import com.example.youbooking.entities.*;
 import com.example.youbooking.repositories.ClientRepository;
 import com.example.youbooking.repositories.ReservationRepository;
 import com.example.youbooking.services.IChamberService;
-import com.example.youbooking.services.IClientService;
+import com.example.youbooking.services.IProprietaireService;
 import com.example.youbooking.services.IReservationService;
 import com.example.youbooking.services.dto.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +25,8 @@ public class ReservationServiceImpl implements IReservationService {
 
     @Autowired
     ClientRepository clientRepository;
+    @Autowired
+    IProprietaireService proprietaireService;
 
     @Override
     public ResponseDTO addReservation(Reservation reservation, Long idChamber, Long idClient) {
@@ -98,6 +100,12 @@ public class ReservationServiceImpl implements IReservationService {
     }
 
     @Override
+    public List<Reservation> findAllReservationOfHotelOwner(String email) {
+        Proprietaire proprietaire = (Proprietaire) proprietaireService.getUserByEmail(email).getData();
+        return reservationRepository.findAllReservationOfHotelOwner(proprietaire.getId());
+    }
+
+    @Override
     public ResponseDTO findOneResrvation(Long idResrvation) {
         Optional<Reservation> reservation = reservationRepository.findById(idResrvation);
         if (!reservation.isPresent()){
@@ -113,8 +121,9 @@ public class ReservationServiceImpl implements IReservationService {
     }
 
     @Override
-    public List<Reservation> findByStatus(StatusReservation status) {
-        return reservationRepository.findReservationByStatusReservation(status);
+    public List<Reservation> findByStatus(String email) {
+        Proprietaire proprietaire = (Proprietaire) proprietaireService.getUserByEmail(email).getData();
+        return reservationRepository.findAllReservationOfHotelOwnerAndStatusEncours(proprietaire.getId(),StatusReservation.Encours);
     }
 
     @Override

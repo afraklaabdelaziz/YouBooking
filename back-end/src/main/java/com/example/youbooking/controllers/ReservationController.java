@@ -23,14 +23,14 @@ public class ReservationController {
     @Autowired
     ChamberRepository chamberRepository;
 
-    @GetMapping("allreservation")
-    public List<Reservation> getAllReservation(){
-    return reservationService.findAllResrvations();
+    @GetMapping("/allreservation/{email}")
+    public List<Reservation> findAllReservationOfHotelOwner(@PathVariable String email){
+    return reservationService.findAllReservationOfHotelOwner(email);
     }
 
-    @GetMapping("reservatinEncours")
-    public List<Reservation> findReservationEncours(){
-        return reservationService.findByStatus(StatusReservation.Encours);
+    @GetMapping("reservatinEncours/{email}")
+    public List<Reservation> findReservationEncours(@PathVariable String email ){
+        return reservationService.findByStatus(email);
     }
 
     @PutMapping("/updateStatusReservation/{id}/{status}")

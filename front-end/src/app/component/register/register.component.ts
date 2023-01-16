@@ -5,6 +5,7 @@ import { UserService } from 'src/app/service/user.service';
 import Swal from 'sweetalert2';
 import { Image } from 'src/app/model/image'
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,7 @@ export class RegisterComponent implements OnInit{
   ngOnInit(): void {
   }
   public user:User;
-  constructor(private userService: UserService,private sanitizare:DomSanitizer) {
+  constructor(private userService: UserService,private sanitizare:DomSanitizer,private router:Router) {
     this.user =  new User();
   }
 
@@ -30,8 +31,21 @@ export class RegisterComponent implements OnInit{
           showConfirmButton: false,
           timer: 1500
         })
+        if (this.userService.getToken() == null){
+          this.router.navigate(['/auth/login'])
+        }else {
+          this.refresh()
+        }
+
+      }else{
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: res.message,
+          showConfirmButton: true,
+          timer: 2000
+        })
       }
-      this.refresh()
     })
   }
 
@@ -51,8 +65,7 @@ export class RegisterComponent implements OnInit{
     }
   }
 
-
-  prepareFormData(user: User) : FormData{
+  prepareFormData(user:User) : FormData{
     const formData = new FormData();
     formData.append(
       'user',
@@ -67,5 +80,4 @@ export class RegisterComponent implements OnInit{
     }
     return formData
   }
-
 }

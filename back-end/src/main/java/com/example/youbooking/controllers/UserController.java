@@ -15,10 +15,15 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -74,7 +79,7 @@ public class UserController {
              clientService.addClient(client,file);
              return new ResponseDTO("success","success",client);
 
-        }else if(role.get().getNom().equals("propritaire")){
+        }else if(role.get().getNom().equals("proprietaire")){
             Proprietaire proprietaire = DtoToEntity.propritaireDtoToUser(userDto);
             proprietaire.setStatus(Status.Desactive);
             return proprietaireService.addPropritaire(proprietaire,file);
@@ -84,14 +89,20 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<ResponseDTO> auth(@RequestBody LoginDto login){
+    public ResponseDTO auth(@RequestBody LoginDto login){
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login.getEmail(),login.getPassword()));
+        User userFound = (User) userService.getUserByEmail(login.getEmail()).getData();
         UserDetails user = userService.findUserByEmail(login.getEmail());
+        if (userFound != null){
+            if (userFound.getStatus().equals(Status.Desactive)){
+                return new ResponseDTO("bad request","this user is ban plaise contact admin");
+            }
+        }
         if (user != null){
             System.out.println("token" + jwtUtils.generateToken(user));
-            return ResponseEntity.ok(new ResponseDTO("success","token",jwtUtils.generateToken(user)));
+            return new ResponseDTO("success","token",jwtUtils.generateToken(user));
         }
-        return ResponseEntity.status(400).body(new ResponseDTO("bad request","user not found"));
+        return new ResponseDTO("bad request","user not found");
     }
 
     @DeleteMapping("/delete/{id}")
@@ -112,6 +123,11 @@ public class UserController {
                                    ,@RequestParam(value = "telephone",required = false) String telephone,
                                    @RequestParam(value = "email",required = false) String email){
         return userService.searchUser(nom,telephone,email);
+    }
+
+    @PostMapping("/logout")
+    public ResponseDTO logout() {
+        return new ResponseDTO("success","you are logout");
     }
 
 

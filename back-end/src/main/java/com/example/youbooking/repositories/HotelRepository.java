@@ -14,6 +14,6 @@ import java.util.List;
 @Repository
 public interface HotelRepository extends JpaRepository<Hotel,Long> {
     public List<Hotel> findHotelByStatus(Status status);
-    public List<Hotel> findHotelByProprietaireId(Long idProprietaire );
+    public List<Hotel> findHotelByProprietaire(Proprietaire proprietaire);
     public List<Hotel> findAll(Specification<Hotel> specification);
 }

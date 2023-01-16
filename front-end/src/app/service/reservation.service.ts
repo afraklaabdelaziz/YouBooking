@@ -9,12 +9,12 @@ export class ReservationService {
 
   constructor(private http:HttpClient) { }
 
-  getAllReservation():Observable<any>{
-    return this.http.get("http://localhost:8080/reservation/allreservation")
+  findAllReservationOfHotelOwner(email:string):Observable<any>{
+    return this.http.get("http://localhost:8080/reservation/allreservation/"+email)
   }
 
-  getAllReservationEncours():Observable<any>{
-    return this.http.get("http://localhost:8080/reservation/reservatinEncours")
+  getAllReservationEncours(email:string):Observable<any>{
+    return this.http.get("http://localhost:8080/reservation/reservatinEncours/"+email)
   }
 
   updateStatusReservation(id:number,status:any):Observable<any>{

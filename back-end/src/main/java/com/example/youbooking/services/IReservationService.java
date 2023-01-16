@@ -13,9 +13,13 @@ public interface IReservationService {
     public ResponseDTO updateReservation(Reservation reservation);
     public ResponseDTO annulerReservation(Long idResrvation);
     public List<Reservation> findAllResrvations();
+
+    List<Reservation> findAllReservationOfHotelOwner(String email);
+
     public ResponseDTO findOneResrvation(Long idResrvation);
     public List<Reservation> findByClientAndStatus(Long idClient,StatusReservation status);
-    public List<Reservation> findByStatus(StatusReservation status);
+
+    List<Reservation> findByStatus(String email);
 
     public List<Reservation> findReservationByChamberAndStatusReservation(Long idChamber, StatusReservation status);
 

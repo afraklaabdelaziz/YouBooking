@@ -19,6 +19,12 @@ public interface ReservationRepository extends JpaRepository<Reservation,Long> {
 
     public List<Reservation> findReservationByChamberAndStatusReservation(Long idChmaber,StatusReservation status);
 
+    @Query("select r from Reservation r where r.chamber.hotel.proprietaire.id = :idOwner")
+    List<Reservation> findAllReservationOfHotelOwner(Long idOwner);
+
+    @Query("select r from Reservation r where r.chamber.hotel.proprietaire.id = :idOwner and r.statusReservation = :status")
+    List<Reservation> findAllReservationOfHotelOwnerAndStatusEncours(Long idOwner,StatusReservation status);
+
     public Reservation findReservationByChamberAndDateDebutAndAndDateFinAndStatusReservation(
             Chamber chamber
             , LocalDate dateDebut

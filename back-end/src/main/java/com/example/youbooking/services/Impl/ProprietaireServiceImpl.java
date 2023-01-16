@@ -44,6 +44,7 @@ public class ProprietaireServiceImpl implements IProprietaireService {
                 }catch (Exception e){
 
                 }
+
                 proprietaireRepository.save(proprietaire);
                 return new ResponseDTO("success","user is added");
             }
@@ -56,10 +57,9 @@ public class ProprietaireServiceImpl implements IProprietaireService {
 
     @Override
     public ResponseDTO getUserByEmail(String email){
-        Proprietaire proprietaire = proprietaireRepository.findUserByEmail(email);
+        Proprietaire proprietaire = proprietaireRepository.findProprietaireByEmail(email);
         if(proprietaire == null){
             return new ResponseDTO("bad request","this user dont present");
-
         }else {
             return new ResponseDTO("success","user",proprietaire);
         }

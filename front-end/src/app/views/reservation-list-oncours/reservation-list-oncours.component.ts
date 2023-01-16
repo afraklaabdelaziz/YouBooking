@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ReservationService } from 'src/app/service/reservation.service';
+import { UserService } from 'src/app/service/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -10,13 +11,19 @@ import Swal from 'sweetalert2';
 export class ReservationListOncoursComponent {
   reservations:any;
   status:any = "EnCours"
+  token: any;
+  user: any;
+  email: any;
 
-  constructor(private reservationService: ReservationService) {
+  constructor(private reservationService: ReservationService,private userService:UserService) {
 
   }
 
   ngOnInit(): void {
-    this.reservationService.getAllReservationEncours().subscribe((res)=>{
+    this.token = this.userService.getToken()
+    this.user = this.userService.getUser(this.token);
+    this.email = this.user.sub;
+    this.reservationService.getAllReservationEncours(this.email).subscribe((res)=>{
       this.reservations = res;
     })
   }

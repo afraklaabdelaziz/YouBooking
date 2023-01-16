@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ReservationService } from 'src/app/service/reservation.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-owner-reservation-list',
@@ -9,13 +10,19 @@ import { ReservationService } from 'src/app/service/reservation.service';
 export class OwnerReservationListComponent implements OnInit{
 
   reservations:any;
+  email: string;
+  user: any;
+  token: any;
 
-  constructor(private reservationService: ReservationService) {
+  constructor(private reservationService: ReservationService,private userService:UserService) {
 
   }
 
   ngOnInit(): void {
-        this.reservationService.getAllReservation().subscribe((res)=>{
+    this.token = this.userService.getToken()
+    this.user = this.userService.getUser(this.token);
+    this.email = this.user.sub;
+        this.reservationService.findAllReservationOfHotelOwner(this.email).subscribe((res)=>{
           this.reservations = res;
         })
     }

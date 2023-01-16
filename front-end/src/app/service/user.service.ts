@@ -36,17 +36,11 @@ export class UserService {
     return this.http.get("http://localhost:8080/user/oneUser/"+email)
   }
 
-  login(login:any) {
-    return this.http.post(`http://localhost:8080/user/login`,login ,{
-      observe: 'response'
-    }).pipe(map((response:HttpResponse<any>) =>{
-      const body = response.body;
-      const headers = response.headers;
-
-      const bearerToken = headers.get('Authorization')!;
-      this.getUser(body.data)
-      return body.data;
-    }))
+  login(login:any):Observable<any> {
+    return this.http.post(`http://localhost:8080/user/login`,login)
+  }
+  logout():Observable<any>{
+    return this.http.post(`http://localhost:8080/user/logout`,null)
   }
 
 

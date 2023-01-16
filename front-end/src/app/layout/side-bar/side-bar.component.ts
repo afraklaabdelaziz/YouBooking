@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -12,14 +13,18 @@ export class SideBarComponent {
   user:any;
   email:string
   userFound: any;
-  constructor(private userService:UserService) {
+  url: string;
+  image: any;
+  constructor(private userService:UserService,private sanitizer: DomSanitizer) {
   }
-  ngOnInit(){
-    this.token = this.userService.getToken();
-    this.user = this.userService.getUser(this.token)
-    this.email = this.user.sub
+  ngOnInit(): void {
+    this.token = this.userService.getToken()
+    this.user = this.userService.getUser(this.token);
+    this.email = this.user.sub;
     this.userService.findUser(this.email).subscribe((res)=>{
       this.userFound = res.data
+      this.url ='data:image/png;base64,' + this.userFound.image.picByte;
+      this.image = this.sanitizer.bypassSecurityTrustUrl(this.url)
     })
   }
   collapseShow = "hidden";
