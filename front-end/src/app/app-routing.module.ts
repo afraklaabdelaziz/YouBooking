@@ -21,33 +21,41 @@ import { OwnerReservationListComponent } from './views/owner-reservation-list/ow
 import { ReservationListOncoursComponent } from './views/reservation-list-oncours/reservation-list-oncours.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { ChamberDesponibleComponent } from './views/chamber-desponible/chamber-desponible.component';
+import { ClientComponent } from './layout/client/client.component';
+import { LogoutComponent } from './component/logout/logout.component';
 
 const routes: Routes = [
-  {path: 'chamber/:id',component: OneRoomComponent},
-  {path: 'add_hotel',component: AddHotelComponent},
-  {path: 'all_hotel',component: AllHotelComponent,canActivate: [AuthGuard,RoleGuard],data:{role:'client'}},
-  {path: 'one_hotel/:id',component: OneHotelComponent},
-  {path: 'chamber_Despo',component: ChamberDesponibleComponent},
-  {path: '',component: LandingComponent},
+  {path:'',component: ClientComponent ,canActivate: [AuthGuard,RoleGuard],data:{role:'client'},
+  children: [
+    {path: 'chamber/:id',component: OneRoomComponent},
+    {path: 'chamber_Despo',component: ChamberDesponibleComponent},
+    {path: 'profile',component: ProfileComponent},
+    {path: '',component: LandingComponent},
+    {path: 'logout',component: LogoutComponent}
+  ]
+  },
+
   {
     path: "admin",
-    component: AdminComponent,
+    component: AdminComponent ,canActivate: [AuthGuard,RoleGuard],data:{role:'admin'},
     children: [
       {path: 'hotel_list', component: AllHotelComponent },
       {path: 'one_hotel/:id', component: OneHotelComponent },
       {path: 'user_list',component: AllUsersComponent},
-      {path: 'profile',component: ProfileComponent}
+      {path: 'profile',component: ProfileComponent},
+      {path: 'logout',component: LogoutComponent}
     ]
   },
   {
     path: "owner",
-    component: OwnerComponent,
+    component: OwnerComponent,canActivate: [AuthGuard,RoleGuard],data:{role:'proprietaire'},
     children: [
       {path: 'one_hotel/:id', component: OneHotelComponent },
       {path: 'hotel_list',component: HotelsOwnerComponent},
       {path: 'reservation_list',component: OwnerReservationListComponent},
       {path: 'resrevation_encours',component: ReservationListOncoursComponent},
-      {path: 'profile',component: ProfileComponent}
+      {path: 'profile',component: ProfileComponent},
+      {path: 'logout',component: LogoutComponent}
     ]
   },
   {
@@ -57,7 +65,6 @@ const routes: Routes = [
       { path: "login", component: LoginComponent },
       { path: "register", component: RegisterComponent },
       { path: "", redirectTo: "login", pathMatch: "full" },
-
     ],
   },
 ];
