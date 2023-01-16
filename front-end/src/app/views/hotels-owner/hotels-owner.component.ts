@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HotelService } from 'src/app/service/hotel.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-hotels-owner',
@@ -8,12 +9,27 @@ import { HotelService } from 'src/app/service/hotel.service';
 })
 export class HotelsOwnerComponent implements OnInit{
   ownerHotels:any
-constructor(private hotelService:HotelService) {}
+  token: any;
+  user: any;
+  email: any;
+constructor(private hotelService:HotelService,private userService:UserService) {}
+
+
 
   ngOnInit(): void {
-        this.hotelService.getAllHotelOfOwner(31).subscribe((res)=>{
+    this.token = this.userService.getToken()
+    this.user = this.userService.getUser(this.token);
+    this.email = this.user.sub;
+        this.hotelService.getAllHotelOfOwner(this.email).subscribe((res)=>{
           this.ownerHotels = res.data;
         })
     }
+
+  showModal = false;
+  showModalAdd = false;
+
+  toggleModalAdd() {
+    this.showModalAdd = !this.showModalAdd;
+  }
 
 }

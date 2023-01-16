@@ -18,8 +18,8 @@ export class HotelService {
     return this.http.get("http://localhost:8080/hotel/all")
   }
 
-  getAllHotelOfOwner(idOwner:number):Observable<any>{
-    return this.http.get("http://localhost:8080/hotel/proprietair/"+idOwner)
+  getAllHotelOfOwner(email:string):Observable<any>{
+    return this.http.get("http://localhost:8080/hotel/proprietair/"+email)
   }
 
   addHotel(hotel:FormData ,email:string):Observable<any>{

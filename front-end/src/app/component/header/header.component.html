@@ -1,35 +1,47 @@
 <!-- Navbar -->
 <nav
-  class="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4"
->
+  class="absolute top-0 w-full mx-auto z-10 md:flex-row md:flex-nowrap md:justify-start">
   <div
-    class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4"
+    class="w-full mx-40 md:mx-0 items-center flex  justify-between md:px-10 px-4"
   >
     <!-- Brand -->
     <a
       class="text-white text-sm uppercase hidden lg:inline-block font-semibold"
       href="#pablo"
-    >Dashboard</a
-    >
+    >Dashboard</a>
     <!-- Form -->
-    <form
-      class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3"
-    >
-      <div class="relative flex w-full flex-wrap items-stretch">
+   <div class="flex ">
+     <form
+       class="md:flex flex-row flex-wrap items-center lg:ml-auto mr-3"
+     >
+       <div class="flex w-full flex-wrap items-stretch">
         <span
-          class="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3"
+          class="z-10 h-full leading-snug font-normal text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3"
         ><i class="fas fa-search"></i
         ></span>
-        <input
-          type="text"
-          placeholder="Search here..."
-          class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"
-        />
-      </div>
-    </form>
-    <!-- User -->
-    <ul class="flex-col md:flex-row list-none items-center hidden md:flex">
+         <input
+           type="text"
+           placeholder="Search here..."
+           class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"
+         />
+       </div>
+     </form>
 
-    </ul>
+     <a [routerLink]="['/profile']" *ngIf="userFound.image == null"  class="flex justify-center items-center text-1xl bg-blue-200 shadow-xl rounded-full border-none h-12 w-12" >
+                          <span>
+                            {{userFound.nom[0].toUpperCase()}}  {{userFound.nom[1].toUpperCase()}}
+                          </span>
+     </a>
+
+     <a [routerLink]="['/profile']" >
+       <img *ngIf="userFound.image != null"
+            alt="..."
+            src="assets/img/team-2-800x800.jpg"
+            [src]="image"
+            class="shadow-xl rounded-full h-auto align-middle border-none h-11 w-11 "/>
+     </a>
+
+   </div>
+
   </div>
 </nav>
