@@ -33,6 +33,8 @@ import { ReservationListOncoursComponent } from './views/reservation-list-oncour
 import { ProfileComponent } from './views/profile/profile.component';
 import { ClientComponent } from './layout/client/client.component';
 import { LogoutComponent } from './component/logout/logout.component';
+import { ReservationClientEcoursComponent } from './views/reservation-client-ecours/reservation-client-ecours.component';
+import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +66,8 @@ import { LogoutComponent } from './component/logout/logout.component';
     ProfileComponent,
     ClientComponent,
     LogoutComponent,
+    ReservationClientEcoursComponent,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,

@@ -23,13 +23,15 @@ import { ProfileComponent } from './views/profile/profile.component';
 import { ChamberDesponibleComponent } from './views/chamber-desponible/chamber-desponible.component';
 import { ClientComponent } from './layout/client/client.component';
 import { LogoutComponent } from './component/logout/logout.component';
+import { ReservationClientEcoursComponent } from './views/reservation-client-ecours/reservation-client-ecours.component';
 
 const routes: Routes = [
-  {path:'',component: ClientComponent ,canActivate: [AuthGuard,RoleGuard],data:{role:'client'},
+  {path:'',component: ClientComponent,
   children: [
-    {path: 'chamber/:id',component: OneRoomComponent},
+    {path: 'chamber/:id',component: OneRoomComponent,canActivate: [AuthGuard,RoleGuard],data:{role:'client'}},
     {path: 'chamber_Despo',component: ChamberDesponibleComponent},
-    {path: 'profile',component: ProfileComponent},
+    {path: 'profile',component: ProfileComponent,canActivate: [AuthGuard,RoleGuard],data:{role:'client'}},
+    {path: 'reservation_encours',component: ReservationClientEcoursComponent,canActivate: [AuthGuard,RoleGuard],data:{role:'client'}},
     {path: '',component: LandingComponent},
     {path: 'logout',component: LogoutComponent}
   ]

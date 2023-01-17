@@ -23,7 +23,7 @@
 <nav>
       <!-- Collapse -->
       <div
-        class="fixed top-0 bottom-0 bg-white w-64 z-10 py-4 px-6 md:block"
+        class="fixed top-0 bg-red-200 h-screen bottom-0w-64 z-10 py-4 px-6 md:block"
         [ngClass]="collapseShow"
       >
         <!-- Collapse header -->
@@ -156,7 +156,7 @@
   </nav>
 
 <div class="relative md:ml-64 bg-blueGray-100 mt-10 md:mt-0">
-  <app-header></app-header>
+  <app-nav-bar></app-nav-bar>
   <app-statistic-owner></app-statistic-owner>
   <div class="px-4 md:px-10 mx-auto w-full -m-24">
     <router-outlet></router-outlet>

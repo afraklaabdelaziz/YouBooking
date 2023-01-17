@@ -15,6 +15,7 @@ export class HeaderComponent {
   userFound: any;
   url: string;
   image: any;
+  dropdownPopoverShow = false;
 
   constructor(private userService:UserService,private sanitizer: DomSanitizer) {}
 
@@ -22,6 +23,14 @@ export class HeaderComponent {
     this.navbarOpen = !this.navbarOpen;
   }
 
+  toggleDropdown(event: { preventDefault: () => void; }) {
+    event.preventDefault();
+    if (this.dropdownPopoverShow) {
+      this.dropdownPopoverShow = false;
+    } else {
+      this.dropdownPopoverShow = true;
+    }
+  }
   ngOnInit(): void {
     this.token = this.userService.getToken()
     this.user = this.userService.getUser(this.token);

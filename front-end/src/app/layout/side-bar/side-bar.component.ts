@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { HotelService } from 'src/app/service/hotel.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Reservation } from 'src/app/model/reservation';
 import { ChamberService } from 'src/app/service/chamber.service';
 import { DataService } from 'src/app/service/data.service';
 import { UserService } from 'src/app/service/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-one-room',
@@ -19,7 +20,7 @@ export class OneRoomComponent {
   email:string
   token: any;
   user: any;
-  constructor(private chamberService:ChamberService, private routeActive: ActivatedRoute,private dataService:DataService,private userService:UserService) {}
+  constructor(private chamberService:ChamberService, private routeActive: ActivatedRoute,private dataService:DataService,private userService:UserService,private router:Router) {}
 
   ngOnInit(){
     this.idRoom = this.routeActive.snapshot.params['id'];
@@ -41,7 +42,24 @@ export class OneRoomComponent {
       this.reservation = res;
     })
     this.chamberService.reserverRoom(this.reservation,id,this.idUser).subscribe((res)=>{
-      console.log(res)
+      if(res.status == 'success'){
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: res.message,
+          showConfirmButton: false,
+          timer: 1500
+        })
+     this.router.navigate([''])
+      }else {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: res.message,
+          showConfirmButton: true,
+          timer: 1500
+        })
+      }
     })
   }
 

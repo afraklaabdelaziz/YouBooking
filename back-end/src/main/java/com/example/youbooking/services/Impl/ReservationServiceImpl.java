@@ -3,9 +3,7 @@ package com.example.youbooking.services.Impl;
 import com.example.youbooking.entities.*;
 import com.example.youbooking.repositories.ClientRepository;
 import com.example.youbooking.repositories.ReservationRepository;
-import com.example.youbooking.services.IChamberService;
-import com.example.youbooking.services.IProprietaireService;
-import com.example.youbooking.services.IReservationService;
+import com.example.youbooking.services.*;
 import com.example.youbooking.services.dto.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +23,9 @@ public class ReservationServiceImpl implements IReservationService {
 
     @Autowired
     ClientRepository clientRepository;
+
+    @Autowired
+    IUserService userService;
     @Autowired
     IProprietaireService proprietaireService;
 
@@ -34,8 +35,8 @@ public class ReservationServiceImpl implements IReservationService {
             return new ResponseDTO("bad request","this is required");
 
         }else if (reservation.getDateDebut().isBefore(LocalDate.now())
-                && reservation.getDateFin().isBefore(reservation.getDateDebut())){
-            return new ResponseDTO("bad date","no date selected");
+                || reservation.getDateFin().isBefore(reservation.getDateDebut())){
+            return new ResponseDTO("bad date","date selected is bad ");
 
 
         } else if (this.findReservationByChamberAndDateDebutAndAndDateFinAndStatus(
@@ -46,9 +47,9 @@ public class ReservationServiceImpl implements IReservationService {
             return new ResponseDTO("reserved","this room is reserved in this date");
 
         }else {
-            Optional<Chamber> chamber = (Optional<Chamber>) chamberService.findOneChamber(idChamber).getData();
+          Chamber chamber = (Chamber) chamberService.findOneChamber(idChamber).getData();
             Optional<Client> client = clientRepository.findById(idClient);
-            reservation.setChamber(chamber.get());
+            reservation.setChamber(chamber);
             reservation.setClient(client.get());
             reservation.setStatusReservation(StatusReservation.Encours);
             reservationRepository.save(reservation);
@@ -63,7 +64,7 @@ public class ReservationServiceImpl implements IReservationService {
             return new ResponseDTO("bad request","this is required");
 
         }else if (reservation.getDateDebut().isBefore(LocalDate.now())
-                && reservation.getDateFin().isBefore(reservation.getDateDebut())){
+                || reservation.getDateFin().isBefore(reservation.getDateDebut())){
             return new ResponseDTO("bad","no date selected");
 
 
@@ -86,7 +87,7 @@ public class ReservationServiceImpl implements IReservationService {
     public ResponseDTO annulerReservation(Long idResrvation) {
         Optional<Reservation> reservation = reservationRepository.findById(idResrvation);
         if(!reservation.isPresent()){
-            return new ResponseDTO("bad request","this reservaton dnt present");
+            return new ResponseDTO("bad request","this reservation not exist ");
         }else {
             reservationRepository.deleteById(idResrvation);
             chamberService.updateStatusChamber(reservation.get().getChamber().getId(), StatusChamber.Disponible);
@@ -116,8 +117,9 @@ public class ReservationServiceImpl implements IReservationService {
     }
 
     @Override
-    public List<Reservation> findByClientAndStatus(Long idClient, StatusReservation status) {
-        return reservationRepository.findReservationByClientAndStatusReservation(idClient,status);
+    public List<Reservation> findByClientAndStatus(String email) {
+         Client client = clientRepository.findClientByEmail(email);
+        return reservationRepository.findReservationByClientId(client.getId());
     }
 
     @Override

@@ -142,6 +142,7 @@ public class HotelServiceImpl implements IHotelService {
 
 
 
+
     public Image uploadImage(MultipartFile multipartFiles) throws IOException {
             Image image = new Image(multipartFiles.getOriginalFilename(),
                     multipartFiles.getContentType(),

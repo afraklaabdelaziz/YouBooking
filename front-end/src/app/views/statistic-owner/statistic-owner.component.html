@@ -7,8 +7,8 @@
       <div class="flex flex-wrap">
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
           <app-satatistic
-            statSubtitle="Room"
-            statTitle="350,897"
+            statSubtitle="Hotels"
+            statTitle="{{numberOfHotel}}"
             statIconName="fas fa-bed"
             statIconColor="bg-red-500"
           ></app-satatistic>
@@ -17,8 +17,8 @@
 
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
           <app-satatistic
-            statSubtitle="Clients"
-            statTitle="924"
+            statSubtitle="Rooms"
+            statTitle="{{numberOfRoom}}"
             statIconName="fas fa-users"
             statIconColor="bg-pink-500"
           ></app-satatistic>
@@ -26,7 +26,7 @@
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
           <app-satatistic
             statSubtitle="Reservation"
-            statTitle="49,65%"
+            statTitle="{{numberOfReservation}}"
             statIconName="fas fa-percent"
             statIconColor="bg-emerald-500"
           ></app-satatistic>

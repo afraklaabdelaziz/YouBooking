@@ -14,6 +14,9 @@ export class ChamberService {
   getAllRooms():Observable<any>{
     return this.http.get("http://localhost:8080/chamber")
   }
+  getCountProprietaireRooms(email: String):Observable<any>{
+    return this.http.get("http://localhost:8080/chamber/countRooms/"+email)
+  }
 
   addRoom(chamber:Chamber):Observable<any>{
     return this.http.post("http://localhost:8080/chamber/add",chamber);

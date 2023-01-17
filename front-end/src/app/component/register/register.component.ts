@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit{
   register(form:NgForm){
     const userForm = this.prepareFormData(this.user)
     this.userService.register(userForm).subscribe((res)=>{
-      if (res.status === 'success'){
+      if (res.status == 'success'){
         Swal.fire({
           position: 'top-end',
           icon: 'success',

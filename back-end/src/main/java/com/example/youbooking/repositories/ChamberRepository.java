@@ -18,4 +18,6 @@ public interface ChamberRepository extends JpaRepository<Chamber,Long> {
     public List<Chamber> findListRoomNoReservedInDate(LocalDate dateDebut,LocalDate dateFin,String ville);
     @Query("select c from Chamber c where c.reservationList.size = 0 and c.hotel.adresse.ville = :ville ")
     public List<Chamber> findAllByVilleNoReserved(String ville);
+
+    Integer countAllByHotelProprietaireEmail(String email);
 }

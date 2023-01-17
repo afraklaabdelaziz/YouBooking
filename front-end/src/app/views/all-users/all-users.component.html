@@ -67,8 +67,14 @@
         <th
           class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
         >
+          <div *ngIf="user.image == null"  class="flex justify-center items-center bg-blue-200 h-12 w-12 bg-white rounded-full border">
+                <span>
+                  {{user.nom[0].toUpperCase()}}  {{user.nom[1].toUpperCase()}}
+                </span>
+          </div>
           <img
-            src="assets/img/bootstrap.jpg"
+            *ngIf="user.image != null"
+            [src]="user.image"
             class="h-12 w-12 bg-white rounded-full border"
             alt="..."
           />

@@ -17,7 +17,7 @@ public interface IReservationService {
     List<Reservation> findAllReservationOfHotelOwner(String email);
 
     public ResponseDTO findOneResrvation(Long idResrvation);
-    public List<Reservation> findByClientAndStatus(Long idClient,StatusReservation status);
+    public List<Reservation> findByClientAndStatus(String email);
 
     List<Reservation> findByStatus(String email);
 

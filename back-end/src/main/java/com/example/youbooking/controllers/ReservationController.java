@@ -38,4 +38,14 @@ public class ReservationController {
         return reservationService.updateStatusReservation(id,status);
     }
 
+    @GetMapping("all_reservationClientEncours/{email}")
+    public List<Reservation> getAllReservationByCkientStatusEncours(@PathVariable String email){
+        return reservationService.findByClientAndStatus(email);
+    }
+
+    @DeleteMapping("annulerReservation/{id}")
+    public ResponseDTO annulerReservation(@PathVariable Long id){
+        return reservationService.annulerReservation(id);
+    }
+
 }

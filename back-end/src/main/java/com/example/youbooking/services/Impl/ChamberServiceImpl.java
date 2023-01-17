@@ -31,11 +31,10 @@ public class ChamberServiceImpl implements IChamberService {
         } else if (chamber.getHotel() == null) {
             return new ResponseDTO("bad request", "hotel first");
         } else if (chamber.getPrix() <= 0){
-            return new ResponseDTO("bad request","prix has been than 0");
+            return new ResponseDTO("bad request","price has been than 0");
         } else {
 
             chamber.setStatusChamber(StatusChamber.Disponible);
-            System.out.println(chamber.getHotel().getId());
             Hotel hotel = (Hotel) hotelService.findOneHotel(chamber.getHotel().getId()).getData();
             chamber.setHotel(hotel);
             chamberRepository.save(chamber);
@@ -105,8 +104,8 @@ public class ChamberServiceImpl implements IChamberService {
     @Override
     public ResponseDTO allRoomsDesponible(Reservation reservation, String ville) {
         if (reservation.getDateDebut().isBefore(LocalDate.now())
-                && reservation.getDateFin().isBefore(reservation.getDateDebut())) {
-            return new ResponseDTO("bad date", "no date selected");
+                || reservation.getDateFin().isBefore(reservation.getDateDebut())) {
+            return new ResponseDTO("bad date", "date selected is bad ");
         } else {
             List<Chamber> chambersNoReserved = chamberRepository.findAllByVilleNoReserved(ville);
             List<Chamber> chamberNoReservedInDate = chamberRepository.findListRoomNoReservedInDate(reservation.getDateDebut(), reservation.getDateFin(), ville);
@@ -118,5 +117,10 @@ public class ChamberServiceImpl implements IChamberService {
 //    public boolean checkListContainsObjet(List<Reservation> list ,Reservation reservation){
 //        return list.stream().map(Reservation::getClass).filter(reservation::equals).findFirst().isPresent();
 //    }
+    }
+
+    @Override
+    public Integer countRoom(String email) {
+        return chamberRepository.countAllByHotelProprietaireEmail(email);
     }
 }

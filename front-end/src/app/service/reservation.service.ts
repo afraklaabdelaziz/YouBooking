@@ -20,4 +20,12 @@ export class ReservationService {
   updateStatusReservation(id:number,status:any):Observable<any>{
     return this.http.put("http://localhost:8080/reservation/updateStatusReservation/"+id+"/"+status,null)
   }
+
+  getListReservationOfClientEncours(email:string):Observable<any>{
+    return this.http.get("http://localhost:8080/reservation/all_reservationClientEncours/"+email)
+  }
+
+  annulerReservation(id:number):Observable<any>{
+    return this.http.delete("http://localhost:8080/reservation/annulerReservation/"+id)
+  }
 }

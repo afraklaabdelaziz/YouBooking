@@ -15,4 +15,6 @@ public interface IChamberService {
     ResponseDTO updateStatusChamber(Long idChamber, StatusChamber status);
 
     ResponseDTO allRoomsDesponible(Reservation reservation, String ville);
+
+    Integer countRoom(String email);
 }

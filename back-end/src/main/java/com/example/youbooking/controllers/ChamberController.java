@@ -63,4 +63,9 @@ public class ChamberController {
         return chamberService.allRoomsDesponible(reservation,ville);
     }
 
+    @GetMapping("/countRooms/{email}")
+    public Integer countRooms(@PathVariable  String email){
+        return chamberService.countRoom(email);
+    }
+
 }

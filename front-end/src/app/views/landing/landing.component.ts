@@ -6,6 +6,7 @@ import { Reservation } from 'src/app/model/reservation';
 import { ChamberService } from 'src/app/service/chamber.service';
 import { DataService } from 'src/app/service/data.service';
 import { HotelService } from 'src/app/service/hotel.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-landing',
@@ -23,10 +24,19 @@ export class LandingComponent implements OnInit{
 
   roomsDesponible(form: NgForm){
     this.chamberService.allRoomNoReserved(this.reservation,this.ville).subscribe((res)=>{
+     if (res.status != 'success'){
+       Swal.fire({
+         position: 'top-end',
+         icon: 'error',
+         title: res.message,
+         showConfirmButton: false,
+         timer: 1500
+       })
+     }else {
       this.dataService.putDataToStream(res);
       this.dataService.setDataToStream(this.reservation)
       this.router.navigate(['/chamber_Despo'])
-    })
+    }})
   }
 
   ngOnInit(): void {

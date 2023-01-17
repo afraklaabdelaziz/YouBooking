@@ -20,4 +20,5 @@ public interface IHotelService {
     ResponseDTO findHotelByProprietaire(String email);
 
     List<Hotel> findByCriteria(String nom, String tele,String ville);
+
 }

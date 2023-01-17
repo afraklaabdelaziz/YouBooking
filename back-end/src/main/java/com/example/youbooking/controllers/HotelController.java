@@ -85,4 +85,5 @@ public class HotelController {
                                     ,@RequestParam(value = "ville",required = false) String ville ){
     return hotelService.findByCriteria(nom, tele,ville);
     }
+
 }
