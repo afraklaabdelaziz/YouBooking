@@ -11,7 +11,7 @@ import { DataService } from 'src/app/service/data.service';
 export class ChamberDesponibleComponent {
   rooms:any
 
-  constructor(private dataService:DataService) {
+  constructor(private dataService:DataService,) {
   }
 
   ngOnInit(){

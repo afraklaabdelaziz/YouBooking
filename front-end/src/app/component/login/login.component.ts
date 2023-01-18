@@ -31,6 +31,13 @@ export class LoginComponent {
           })
 
         }else {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: "welcome to our account",
+            showConfirmButton: false,
+            timer: 2000
+          })
           localStorage.setItem("token", res.data)
           let role = this.userService.getUser(res.data).authorities[0].authority
           switch (role) {

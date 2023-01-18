@@ -13,10 +13,11 @@ import java.util.List;
 public interface ChamberRepository extends JpaRepository<Chamber,Long> {
 
     @Query("select r.chamber from Reservation r where r.chamber.hotel.adresse.ville = :ville " +
-            " and ((:dateDebut not BETWEEN r.dateDebut and r.dateFin)" +
+            " and r.chamber.hotel.status=0 " +
+            "and ((:dateDebut not BETWEEN r.dateDebut and r.dateFin)" +
             " or (:dateFin not between r.dateDebut and r.dateFin))" )
     public List<Chamber> findListRoomNoReservedInDate(LocalDate dateDebut,LocalDate dateFin,String ville);
-    @Query("select c from Chamber c where c.reservationList.size = 0 and c.hotel.adresse.ville = :ville ")
+    @Query("select c from Chamber c where c.reservationList.size = 0 and c.hotel.adresse.ville = :ville and c.hotel.status=0")
     public List<Chamber> findAllByVilleNoReserved(String ville);
 
     Integer countAllByHotelProprietaireEmail(String email);

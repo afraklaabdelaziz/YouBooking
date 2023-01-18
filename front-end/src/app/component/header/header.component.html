@@ -27,6 +27,11 @@
        </div>
      </form>
 
+     <div  (click)="toggleDropdown($event)" *ngIf="token == null"  class="flex justify-center items-center text-center  md:flex gap-3" >
+                         <a class="btn bg-blueGray-400 py-1 px-3 font-bold text-white" routerLink="/auth/login">login</a>
+                         <a class="btn bg-blueGray-400 py-1 px-3 font-bold text-white" routerLink="/auth/register">register</a>
+     </div>
+
      <div  (click)="toggleDropdown($event)" *ngIf="userFound.image == null || token == null"  class="flex justify-center items-center text-1xl bg-blue-200 shadow-xl rounded-full border-none h-12 w-12" >
                           <span>
                             {{userFound.nom[0].toUpperCase()}}  {{userFound.nom[1].toUpperCase()}}

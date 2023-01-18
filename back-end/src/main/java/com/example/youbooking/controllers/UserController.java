@@ -90,16 +90,16 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseDTO auth(@RequestBody LoginDto login){
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login.getEmail(),login.getPassword()));
         User userFound = (User) userService.getUserByEmail(login.getEmail()).getData();
         UserDetails user = userService.findUserByEmail(login.getEmail());
         if (userFound != null){
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login.getEmail(),login.getPassword()));
             if (userFound.getStatus().equals(Status.Desactive)){
                 return new ResponseDTO("bad request","this user is ban plaise contact admin");
             }
         }
         if (user != null){
-            System.out.println("token" + jwtUtils.generateToken(user));
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login.getEmail(),login.getPassword()));
             return new ResponseDTO("success","token",jwtUtils.generateToken(user));
         }
         return new ResponseDTO("bad request","user not found");

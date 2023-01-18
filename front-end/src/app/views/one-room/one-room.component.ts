@@ -23,6 +23,9 @@ export class OneRoomComponent {
   constructor(private chamberService:ChamberService, private routeActive: ActivatedRoute,private dataService:DataService,private userService:UserService,private router:Router) {}
 
   ngOnInit(){
+    this.dataService.getDataRes().subscribe((res: Reservation)=>{
+      this.reservation = res;
+    })
     this.idRoom = this.routeActive.snapshot.params['id'];
     this.chamberService.getOneRoom(this.idRoom).subscribe((res)=>{
       this.room = res.data;
@@ -38,9 +41,6 @@ export class OneRoomComponent {
   }
 
   reserver(id: number) {
-    this.dataService.getDataRes().subscribe((res: Reservation)=>{
-      this.reservation = res;
-    })
     this.chamberService.reserverRoom(this.reservation,id,this.idUser).subscribe((res)=>{
       if(res.status == 'success'){
         Swal.fire({

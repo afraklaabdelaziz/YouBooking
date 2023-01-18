@@ -24,6 +24,7 @@ export class LandingComponent implements OnInit{
 
   roomsDesponible(form: NgForm){
     this.chamberService.allRoomNoReserved(this.reservation,this.ville).subscribe((res)=>{
+      console.log(res)
      if (res.status != 'success'){
        Swal.fire({
          position: 'top-end',
@@ -31,6 +32,14 @@ export class LandingComponent implements OnInit{
          title: res.message,
          showConfirmButton: false,
          timer: 1500
+       })
+     }else if(res.data <=0){
+       Swal.fire({
+         position: 'top-end',
+         icon: 'warning',
+         title: "no room desponible in this date and this ville",
+         showConfirmButton: false,
+         timer: 2500
        })
      }else {
       this.dataService.putDataToStream(res);

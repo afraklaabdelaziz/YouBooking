@@ -36,6 +36,7 @@ export class ReservationClientEcoursComponent implements OnInit{
           showConfirmButton: true,
           timer: 1500
         })
+        this.refresh()
       }else {
         Swal.fire({
           position: 'top-end',
@@ -47,6 +48,8 @@ export class ReservationClientEcoursComponent implements OnInit{
       }
     })
     }
-
+  refresh(): void {
+    window.location.reload();
+  }
 
 }
