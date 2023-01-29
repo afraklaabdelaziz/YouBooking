@@ -41,4 +41,10 @@ public class AdminServiceImpl implements IAdminService {
             return new ResponseDTO("success","user",admin);
         }
     }
+
+    @Override
+    public ResponseDTO add(Admin admin) {
+        adminRepository.save(admin);
+        return new ResponseDTO("success","admin added",admin);
+    }
 }

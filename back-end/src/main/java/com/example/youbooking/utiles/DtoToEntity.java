@@ -18,6 +18,11 @@ public class DtoToEntity {
         return modelMapper.map(userDto, Client.class);
     }
 
+    public static Admin adminDtoToUser(UserDto userDto) {
+        ModelMapper modelMapper=new ModelMapper();
+        return modelMapper.map(userDto, Admin.class);
+    }
+
     public static Proprietaire propritaireDtoToUser(UserDto userDto) {
         ModelMapper modelMapper=new ModelMapper();
         return modelMapper.map(userDto, Proprietaire.class);
