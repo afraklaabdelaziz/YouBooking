@@ -9,7 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="58b8eb55-0954-4f51-ace4-40e03a696069" name="Changes" comment="update user controoler et token" />
+    <list default="true" id="58b8eb55-0954-4f51-ace4-40e03a696069" name="Changes" comment="update user controoler et token">
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/views/landing/landing.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/views/landing/landing.component.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -131,7 +133,7 @@
       <workItem from="1672648800341" duration="129064000" />
       <workItem from="1673284949490" duration="180190000" />
       <workItem from="1673778291618" duration="66281000" />
-      <workItem from="1674959693919" duration="9295000" />
+      <workItem from="1674959693919" duration="10163000" />
     </task>
     <task id="LOCAL-00001" summary="ajouter component client et component logout">
       <created>1673884165591</created>
