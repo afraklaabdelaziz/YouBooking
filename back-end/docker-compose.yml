@@ -1,0 +1,24 @@
+version: '3.3'
+services:
+  app:
+    container_name: you-booking
+    image: youbooking_back-end
+    build: .
+    ports:
+      - "8088:8088"
+    depends_on:
+      - postgresqldb
+  postgresqldb:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=you_booking
+  web:
+    image: youbooking_frontend
+    ports:
+      - "62250:80"
+    depends_on:
+      - app

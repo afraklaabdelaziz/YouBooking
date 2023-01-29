@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="YouBooking:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58b8eb55-0954-4f51-ace4-40e03a696069" name="Changes" comment="update user controoler et token">
+      <change afterPath="$PROJECT_DIR$/back-end/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/repositories/ChamberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/repositories/ChamberRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/target/classes/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/example/youbooking/controllers/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/target/classes/com/example/youbooking/controllers/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/component/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/component/header/header.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/component/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/component/login/login.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/component/nav-bar/nav-bar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/component/nav-bar/nav-bar.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/layout/owner/owner.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/layout/owner/owner.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/views/chamber-desponible/chamber-desponible.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/views/chamber-desponible/chamber-desponible.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/views/landing/landing.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/views/landing/landing.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/views/landing/landing.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/views/landing/landing.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/views/one-room/one-room.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/views/one-room/one-room.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/views/one-room/one-room.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/views/one-room/one-room.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/views/reservation-client-ecours/reservation-client-ecours.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/views/reservation-client-ecours/reservation-client-ecours.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,15 +45,15 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/repositories/AdminRepository.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/repositories/ProprietaireRepository.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/front-end/src/app/service/hotel.service.ts" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/services/Impl/ProprietaireServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/services/Impl/HotelServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/services/Impl/AdminServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/services/Impl/UserServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/services/IHotelService.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/entities/Admin.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/repositories/AdminRepository.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/front-end/src/app/service/hotel.service.ts" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/services/Impl/ProprietaireServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/services/Impl/UserServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/services/Impl/HotelServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/services/Impl/AdminServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
@@ -73,6 +73,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -95,20 +98,23 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="11" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../angular_first" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/back-end/target" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="project.scopes" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2021.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Youcode\Desktop\booking\YouBooking\back-end" />
+      <recent name="C:\Users\Youcode\Desktop\booking\YouBooking\back-end\src\main\resources" />
+      <recent name="C:\Users\Youcode\Desktop\booking\YouBooking\back-end\target" />
       <recent name="C:\Users\Youcode\Desktop\YouBooking\front-end" />
     </key>
   </component>
@@ -134,6 +140,7 @@
       <workItem from="1672648800341" duration="129064000" />
       <workItem from="1673284949490" duration="180190000" />
       <workItem from="1673778291618" duration="66281000" />
+      <workItem from="1674959693919" duration="5461000" />
     </task>
     <task id="LOCAL-00001" summary="ajouter component client et component logout">
       <created>1673884165591</created>

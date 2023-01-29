@@ -125,6 +125,12 @@ public class UserController {
         return userService.searchUser(nom,telephone,email);
     }
 
+    @PostMapping("/addrole")
+    public ResponseDTO addRole(@RequestBody Role role){
+        roleRepository.save(role);
+        return new ResponseDTO("success","role is added",role);
+    }
+
     @PostMapping("/logout")
     public ResponseDTO logout() {
         return new ResponseDTO("success","you are logout");
