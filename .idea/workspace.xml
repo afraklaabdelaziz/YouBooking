@@ -10,15 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58b8eb55-0954-4f51-ace4-40e03a696069" name="Changes" comment="update user controoler et token">
-      <change afterPath="$PROJECT_DIR$/back-end/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/com/example/youbooking/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/example/youbooking/controllers/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/target/classes/com/example/youbooking/controllers/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,6 +105,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Youcode\Desktop\booking\YouBooking" />
       <recent name="C:\Users\Youcode\Desktop\booking\YouBooking\back-end" />
       <recent name="C:\Users\Youcode\Desktop\booking\YouBooking\back-end\src\main\resources" />
       <recent name="C:\Users\Youcode\Desktop\booking\YouBooking\back-end\target" />
@@ -140,7 +134,7 @@
       <workItem from="1672648800341" duration="129064000" />
       <workItem from="1673284949490" duration="180190000" />
       <workItem from="1673778291618" duration="66281000" />
-      <workItem from="1674959693919" duration="5461000" />
+      <workItem from="1674959693919" duration="8742000" />
     </task>
     <task id="LOCAL-00001" summary="ajouter component client et component logout">
       <created>1673884165591</created>
